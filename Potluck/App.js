@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Home from "./Screens/home";
-//import Navigator from "./routes/homeStack.js";
+import Navigator from "./homeStack.js";
+//import Home from './screens/Home';
 //import * as Font from 'expo-font';
 //import { Assets } from 'react-navigation-stack';
 //import AppLoading from 'expo-app-loading'
@@ -29,6 +29,6 @@ import Home from "./Screens/home";
 */
 export default function App() {
   return(
-    <Home />
+    <Navigator />
   );
 }
