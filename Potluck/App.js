@@ -1,68 +1,18 @@
-import React, { useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './HomeScreen';
+import ProfileScreen from './ProfileScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [dish, setDish] = useState(''); // State for the input
-  const [dishes, setDishes] = useState([]); // State for the list of dishes
-
-  const addDish = () => {
-    if (dish.trim() !== '') {
-      setDishes([...dishes, { id: Date.now().toString(), name: dish }]);
-      setDish('');
-    }
-  };
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Potluck Dishes</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="Enter a dish..."
-        value={dish}
-        onChangeText={setDish}
-      />
-
-      <Button title="Add Dish" onPress={addDish} />
-
-      <FlatList 
-        data={dishes}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text>{item.name}</Text>
-          </View>
-        )}
-      />
-
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Potluck App' }} />
+        <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'User Profile' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 20,
-  },
-  listItem: {
-    width: '100%',
-    padding: 10,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-  },
-});
