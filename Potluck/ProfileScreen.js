@@ -1,10 +1,32 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, Modal } from 'react-native';
+import React, { useState} from 'react';
+import { StyleSheet, Text, View, Button, Image, ScrollView, Modal, TextInput, TouchableOpacity  } from 'react-native';
+import { getCurrentUser, getSampleReview, getSampleUser } from './utilities/testdata';
+import Review from './objects/posts/Review';
 
 export default function ProfileScreen({ navigation, route}) {
+
+  const [newReviewModalVisible, setNewReviewModalVisible] = useState(false);
+  const [headline, setHeadline] = useState('');
+  const [message, setMessage] = useState(''); // state for a new comment
+  const [rating, setRating] = useState(0.5);
+  const sampleUser = getSampleUser();
+  const sampleReview = getSampleReview();
+  const [reviews, updateReviews] = useState([]); // state for all comments, initialized with a sample comment
+  
+  
+  const addReview = () => {
+    setNewReviewModalVisible(false);
+    const review = {
+      reviewRating: rating,
+      message: message,
+      headline: headline,
+    }
+    updateReviews([...reviews, <Review user={getCurrentUser()} userReviewed={route.params.user} review={review} navigator={navigation}></Review>]);
+  };
+
   return (
     <View>
-      <ScrollView>
+      <ScrollView style={styles.scrollContent}>
         <View style={styles.container}>
 
           {/* Profile pic placeholder */}
@@ -55,15 +77,40 @@ export default function ProfileScreen({ navigation, route}) {
               </View>
 
               <View style={[styles.rightContainer, {paddingBottom: 0}]}>
-                <Button title="+ Create New"/>
+                <Button title="+ Create New" onPress={() => setNewReviewModalVisible(true)}/> 
               </View>
             </View>
           </View>
 
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flex: 1}}>
+              {reviews.map((review) => (review))}
+            </View>
+          </View>
           <Button title="Go Back" onPress={() => navigation.goBack()} /> 
+          
         </View>
+
+        
       </ScrollView>
 
+      <Modal visible={newReviewModalVisible} animationType="fade" transparent={true}>
+            <View style={styles.modalBackground}>
+                <View style={styles.commentModal}>
+                    <TextInput style={styles.commentInput} placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
+                    <TextInput style={styles.commentInput} placeholder="Add a body..." value={message} onChangeText={setMessage} />
+                    <TextInput style={styles.commentInput} placeholder="Add a rating..." value={rating} onChangeText={setRating} />
+                    <View style={styles.commentButtons}>
+                        <TouchableOpacity style={styles.postButton} onPress={addReview}>
+                            <Text style={styles.postButtonText}>Post</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.cancelButton} onPress={() => {setNewReviewModalVisible(false), setMessage('')}}>
+                            <Text style={styles.cancelButtonText}>Cancel</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        </Modal>
       
     </View>
   );
@@ -75,6 +122,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     justifyContent: 'flex-start',
+  },
+  
+  commentInput: {
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 15,
+    borderRadius: 7, // slightly rounded edges
+  },
+  cancelButtonText: {
+      
+  },
+  commentButtons: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 15,
+  },
+  commentModal: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   profilePic: {
     width: 100,
@@ -112,6 +195,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'left'
+  },
+  postButton: {
+      backgroundColor: '#3498db',
+      padding: 8,
+      flex: 1,
+      marginRight: 5,
+      borderRadius: 5,
+  },
+  postButtonText: {
+      color: 'white',
+      textAlign: 'center',
+  },
+  cancelButton: {
+      backgroundColor: 'lightgray',
+      padding: 8,
   },
   bodyText: {
     justifyContent: 'flex-start',

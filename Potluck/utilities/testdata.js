@@ -3,7 +3,7 @@ export const getSampleUser = () => {
     return {
         name: "Dave Sanchez",
         email: "davesanchez@potluck.com",
-        imageSource: { uri: 'https://drive.google.com/uc?export=download&id=1bwAnGYoDKeUmNidsg-JF_62G8iq3hNZ4'},
+        imageSource: require('./../assets/pfp.jpg'),
         bio: "I'm just a glizzy gobbler looking for some mommy milk.",
         rating: 4.5
     }
@@ -27,7 +27,7 @@ export const getCurrentUser = () =>{
     return {
         name: "Steve Sanchez",
         email: "stevesanchez@potluck.com", 
-        imageSource: { uri: 'https://drive.google.com/uc?export=download&id=1bwAnGYoDKeUmNidsg-JF_62G8iq3hNZ4'},
+        imageSource: require('./../assets/pfp.jpg'),
         bio: "Imma bum.",
         rating: 3.9
     }

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const Review = ({user, review, navigator}) => {
+const Review = ({user, userReviewed, review, navigator}) => {
 
-    
 
     const starImages = {
         0.5: require('./../../assets/stars/0.5Stars.png'),

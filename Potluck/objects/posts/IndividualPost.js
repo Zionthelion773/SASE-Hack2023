@@ -7,6 +7,7 @@ import HomeScreen from '../../HomeScreen';
 const IndividualPost = ({user, post, updateState, navigator}) => {
     const [commentModalVisible, setCommentModalVisible] = useState(false);
     const [comment, setComment] = useState('');
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const addComment = () => {
         if (comment.trim() !== '') {
@@ -52,7 +53,7 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
             <Text style={styles.commentButton}>💬 Comment</Text>
         </TouchableOpacity>
 
-        <Modal visible={commentModalVisible} animationType="slide" transparent={true}>
+        <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
             <View style={styles.modalBackground}>
                 <View style={styles.commentModal}>
                     <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal, ActivityIndicator } from 'react-native';
 import IndividualPost from './objects/posts/IndividualPost';
 import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
 import Review from './objects/posts/Review';
@@ -79,7 +79,7 @@ export default function HomeScreen({ navigation }) {
 
             </ScrollView>
 
-            <Modal visible={commentModalVisible} animationType="slide" transparent={true}>
+            <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
                 <View style={styles.modalBackground}>
                     <View style={styles.commentModal}>
                         <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
