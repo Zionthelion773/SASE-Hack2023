@@ -100,7 +100,10 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'white',
+        
+
+
     },
     scrollContent: {
         flex: 1,
@@ -110,6 +113,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        opacity: 0.5,
     },
     input: {
         width: '100%',
@@ -146,6 +150,7 @@ const styles = StyleSheet.create({
   foodNearMeButton: {
       alignItems: 'center',
       padding: 10,
+      opacity: 1,
       backgroundColor: '#ddd'
   },
 
@@ -194,7 +199,9 @@ placeholderImage: {
 centeredContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontWeight: 'bold',
+    color: 'red'
 },
 commentButton: {
     color: 'blue',
