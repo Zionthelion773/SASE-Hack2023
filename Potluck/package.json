@@ -9,11 +9,6 @@
     "web": "expo start --web"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@react-navigation/bottom-tabs": "^6.5.9",
-    "@react-navigation/material-top-tabs": "^6.6.4",
-=======
->>>>>>> 7c99683c7832f42a3bfe3333178e205088201811
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
     "expo": "~49.0.13",
