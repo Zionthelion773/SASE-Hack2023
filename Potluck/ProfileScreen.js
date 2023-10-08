@@ -50,7 +50,11 @@ export default function ProfileScreen({ navigation, route}) {
 
           <View style={styles.verticalContainer}>
             <View style={styles.leftContainer}>
-              <Text style={styles.boldAndBiggerText}>Reviews</Text>
+              <Text style={[styles.boldAndBiggerText, {marginTop: 10}]}>Reviews</Text>
+            </View>
+
+            <View style={[styles.rightContainer, {paddingBottom: 0}]}>
+              <Button title="+ Create New"/>
             </View>
           </View>
         </View>
@@ -81,7 +85,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   buffer:{
-    height: 20
+    height: 15
   },
   verticalContainer: {
     flexDirection: 'row',
@@ -93,6 +97,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flex: 1,
     alignSelf: 'left',
+  },
+  rightContainer: {
+    flexDirection: 'row',
+    alignSelf: 'right',
+    alignItems: 'right'
   },
   title: {
     fontSize: 24,

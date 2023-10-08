@@ -19,7 +19,7 @@ const Review = ({user, review, navigator}) => {
     };
 
     const numberOfStars = review.reviewRating;
-    const picture = starImages.numberOfStars;
+    const picture = starImages[numberOfStars];
 
     return (
     <View  style={styles.container}>
