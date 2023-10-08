@@ -31,3 +31,15 @@ export const getCurrentUser = () =>{
     }
 
 };
+
+export const getSampleReview = () => {
+
+    return {
+        name: "Walter White",
+        email: "waltuh@potluck.com",
+        imageSource: { uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Walter_White_S5B.png/220px-Walter_White_S5B.png'},
+        message: "This guy is a bum.",
+        headline: "Bum",
+        reviewRating: 1.5
+    }
+};

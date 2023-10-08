@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import IndividualPost from './objects/posts/IndividualPost';
-import {getSampleUser, getSamplePost, getCurrentUser} from './utilities/testdata';
+import review from './objects/Review';
+import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
+import Review from './objects/Review';
 
 export default function HomeScreen({ navigation }) {
   const [dish, setDish] = useState('');
   const [dishes, setDishes] = useState([]);
-  const user = getCurrentUser();
+  const user = getCurrentUser(); 
 
     const addDish = () => {
         if (dish.trim() !== '') {
@@ -45,6 +47,11 @@ export default function HomeScreen({ navigation }) {
                         </View>
                     )}
                 />
+
+                <IndividualPost user={getSampleUser()} post={getSamplePost()} navigator={navigation}></IndividualPost>
+                <IndividualPost user={getSampleUser()} post={getSamplePost()} navigator={navigation}></IndividualPost>
+                <Review user={getSampleUser()} review={getSampleReview()} navigator={navigation}></Review>
+
             </ScrollView>
 
             {/* Fixed Food Near Me Button */}
