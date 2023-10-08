@@ -8,28 +8,52 @@ export default function EventNearMe() {
   const textBlurbs = [
     {
       id: 1,
-      event: "Tennis Club US Open Watch Party!",
-      text:
-        "This is a long text blurb. It can be even longer... this is very long to long for it to fit on the screen even longer than you thought hahahahahahah so long, not over just yet. Ok, it's over now lololol XD",
+      event: "🎾Tennis Club US Open Watch Party!🎾",
+      text: "🎾 Join Us for the Tennis Club US Open Watch Party! 🎾Get ready for a grand slam of an evening! The Tennis Club is hosting a thrilling US Open Watch Party. We'll have popcorn, chips, and cookies ready as you cheer for your favorite players on the big screen."
     },
     {
       id: 2,
-      event: "Squirrel Club Study Event (╯°□°)╯︵ ┻━┻",
+      event: " 📚Squirrel Club Study Event (╯°□°)╯︵ ┻━┻ 📚",
       text:
-        "This is a long text blurb. It can be even longer... this is very long to long for it to fit on the screen even longer than you thought hahahahahahah so long, not over just yet. Ok, it's over now lololol XD",
+        "Get ready to hit the books with the Squirrel Club! Join us for a productive study session at the Library. We're providing a study-friendly environment along with snacks to keep you energized, including redbulls and chips. Don't flip the table—flip those pages and ace your exams with us! 📖🍿📚"
     },
     {
       id: 3,
-      event: "ASA trip to Chinatown uWu",
+      event: "🌆 ASA Trip to Chinatown uWu 🌆",
       text:
-        "This is a long text blurb. It can be even longer... this is very long to long for it to fit on the screen even longer than you thought hahahahahahah so long, not over just yet. Ok, it's over now lololol XD",
+        "Join the Asian American Student Association (ASA) for an exciting trip to Chinatown! Explore the vibrant culture, delicious cuisine, and rich history of this iconic neighborhood. We'll be meeting at MTCC and embarking on a cultural adventure. Don't miss out on this uWu-some experience with ASA! 🏮🥠🚌"
+
     },
     {
         id: 4,
-        event: "SASE free glizzy bro",
+        event: "📝 SASE Resume Workshop 📝",
         text:
-          "This is a long text blurb. It can be even longer... this is very long to long for it to fit on the screen even longer than you thought hahahahahahah so long, not over just yet. Ok, it's over now lololol XD",
+          "Calling all aspiring scientists and engineers! The Society of Asian Scientists and Engineers (SASE) invites you to our Resume Workshop. Whether you're looking to polish your existing resume or create one from scratch, our experts are here to help. Join us at RE 104 and equip yourself with valuable resume-building skills. As a bonus, we'll be serving snacks like bananas and pudding to keep you fueled during the workshop. Don't miss this opportunity to take your career to the next level with SASE! 💼🍪🔬",
       },
+      {
+        id: 5,
+        event: "🌟 Delta Tau Lua Rush Event! 🌟",
+        text:
+          "Calling all adventure seekers! Join us for an exciting rush event at Delta Tau Lua! 🍔 We're serving mouthwatering BBQ Pork Sliders and more! 🎉 Get to know our amazing members and discover the adventure that awaits you. Don't miss out on a chance to be part of something extraordinary. See you there! 🤙🏄‍♂️🏝️",
+      },
+      {
+      id: 6,
+        event: "🌟 Spikeball and Sandwiches Event! 🌟",
+        text:
+          "Get ready for a thrilling day of Spikeball and delicious sandwiches! Join us for an exciting match and some mouthwatering bites. Bring your A-game and your appetite for fun!",
+        },
+        {
+        id: 7,
+        event: "🎳 Bog, Bowling, and Burgers Night! 🎳",
+        text:
+            "Calling all bowling enthusiasts! Join us for an evening of bowling, laughter, and mouthwatering burgers on Friday. Strike out the stress and satisfy your hunger for fun!",
+            },
+        {
+        id: 8,
+            event: "🛹 Skate Club Skate Day! 🛹",
+            text:
+            "Skateboarding fanatics, unite! It's Skate Club Skate Day, filled with flips, tricks, and some surprise snacks. Shred it up and fuel your skating passion! Don't miss out on these exciting events. Mark your calendars and join the fun! 🥪🍔🛹",
+            },
   ];
 
 
