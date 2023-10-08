@@ -3,37 +3,32 @@ import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOp
 import { MaterialIcons } from '@expo/vector-icons'
 
 
-const newPost = () => {
-    setShowModal(true);
-  };
-  
+
 export default function MakePost() {
+const [showModal, setShowModal] = useState(false);
+const [postChoice, setPostChoice] = useState(null);
+
+const newPost = () => {
+    setShowModal();
+  };
 
     return (
         <View>
-            <Modal visible={showModal} animationType="slide">
-                <View style={styles.modalContainer}>
-                    <Text style={styles.modalTitle}>Choose Post Type</Text>
-                    <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => {
-                        setPostChoice('event');
-                        setShowModal(false);
-                    }}
-                    >
-                    <Text style={styles.modalButtonText}>Post an Event</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => {
-                        setPostChoice('food');
-                        setShowModal(false);
-                    }}
-                    >
-                    <Text style={styles.modalButtonText}>Give Excess Food Away</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+            <ScrollView>
+                <Text style={styles.button1}>Post Excess Food to Give Awaye</Text>
+                <Text style={styles.button2}>Post a School Event</Text>
+            </ScrollView>
         </View>
-    )
+    );
 }
+button1: {
+    backgroundColor: "gray",
+    fontSize: 8,
+    fontWeight: "bold",
+    left: 280,
+    padding: 5,
+    bottom: 48,
+    borderWidth: 4,
+    borderColor: 'gold',
+}
+});
