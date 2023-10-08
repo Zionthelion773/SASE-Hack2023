@@ -41,7 +41,7 @@ export function eventData(user, headline, message, types, imageSource, location)
 
 export function userData(name, bio, username, rating, reviews, posts, events, imageSource){
     this.name = name;
-    this.boi = bio;
+    this.bio = bio;
     this.username = username;
     this.rating = rating;
     this.reviews = reviews;
