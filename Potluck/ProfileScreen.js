@@ -1,73 +1,123 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native';
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({ navigation, route}) {
   return (
-    <View style={styles.container}>
+    <ScrollView>
+      <View style={styles.container}>
 
-      {/* Profile pic placeholder */}
-      <Image 
-        style={styles.profilePic}
-        source={{uri: 'https://via.placeholder.com/100'}}
-      />
+        {/* Profile pic placeholder */}
+        <View style={styles.header}>
+          <Image 
+            style={styles.profilePic}
+            source={route.params.user.imageSource}
+          />
 
-      {/* Bio and Tier */}
-      <View style={styles.bioTierContainer}>
-        <Text style={styles.title}>Bio</Text>
-        <Text style={styles.boldAndBiggerText}>Tier</Text>
+          {/* Stars */}
+          <View style={{justifyContent: 'center', height: 100}}>
+            <Text style={styles.starsText}>{route.params.user.rating} ⭐</Text>
+          </View>
+
+
+        </View>
+
+        <View style={{height: 30}}>
+          <Text style={styles.title}>{route.params.user.name}</Text>
+        </View>
+
+
+
+
+
+        <View style={{marginBottom: 10}}>
+          <Text style={[styles.bodyText, {textAlign: 'center'}]}>2nd Year Computer Science</Text>
+        </View>
+
+
+
+
+        <View style={styles.body}>
+          {/* Bio */}
+          <View style={styles.verticalContainer}>
+            <View style={styles.leftContainer}>
+              <Text style={[styles.boldAndBiggerText, {textAlign: 'left'}]}>Bio: </Text>
+              <Text style={[styles.bodyText, {textAlign: 'left'}]}>{route.params.user.bio}</Text>
+            </View>
+          </View>
+
+          <View style={styles.buffer}>
+          </View>
+
+          <View style={styles.verticalContainer}>
+            <View style={styles.leftContainer}>
+              <Text style={styles.boldAndBiggerText}>Reviews</Text>
+            </View>
+          </View>
+        </View>
+
+        <Button title="Go Back" onPress={() => navigation.goBack()} /> 
       </View>
-
-      {/* Stars */}
-      <Text style={styles.boldAndBiggerText}>Stars: ⭐⭐⭐⭐⭐</Text>
-
-      {/* Major Info */}
-      <Text style={[styles.boldAndBiggerText, styles.majorInfo]}>Major Info</Text>
-
-      {/* Current Reviews */}
-      <Text style={[styles.boldAndBiggerText, styles.reviews]}>Current Reviews</Text>
-
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'gray',
+    backgroundColor: 'white',
     alignItems: 'center',
     padding: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   profilePic: {
     width: 100,
     height: 100,
     borderRadius: 50, 
+    marginBottom: 10,
+    marginRight: 5
+  },
+  header:{
+    flexDirection: 'row',
+    height: 100,
     marginBottom: 10
   },
-  bioTierContainer: {
+  buffer:{
+    height: 20
+  },
+  verticalContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%'
+    alignSelf: 'left',
+    alignItems: 'left'
+  },
+  leftContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    flex: 1,
+    alignSelf: 'left',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    flex: 1,
-    color: 'white'
+    color: 'black',
+    textAlign: 'left'
+  },
+  bodyText: {
+    justifyContent: 'flex-start',
+    fontSize: 16,
+    color: 'black'
   },
   boldAndBiggerText: {
     fontWeight: 'bold',
     fontSize: 18,
-    color: 'white'
+    color: 'black',
   },
-  majorInfo: {
-    alignSelf: 'flex-end',
-    marginTop: 20
+  starsText: {
+    fontWeight: 'bold',
+    fontSize: 40,
+    color: 'black',
+    justifyContent: 'center',
+    marginLeft: 5
   },
-  reviews: {
-    alignSelf: 'flex-start',
-    marginBottom: 20
+  body: {
+    
   }
 });

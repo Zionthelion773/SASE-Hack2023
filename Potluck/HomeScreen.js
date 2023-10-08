@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 import IndividualPost from './objects/posts/IndividualPost';
-import {getSampleUser, getSamplePost} from './utilities/testdata';
+import {getSampleUser, getSamplePost, getCurrentUser} from './utilities/testdata';
 
 export default function HomeScreen({ navigation }) {
   const [dish, setDish] = useState('');
   const [dishes, setDishes] = useState([]);
+  const user = getCurrentUser();
 
   const addDish = () => {
     if (dish.trim() !== '') {
@@ -18,10 +19,10 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
 
       {/* Profile Image Button */}
-      <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile')}>
+      <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile', {user})}>  
         <Image 
           style={styles.profileImage}
-          source={{uri: 'https://via.placeholder.com/50'}}
+          source={getCurrentUser().imageSource}
         />
       </TouchableOpacity>
 
@@ -47,7 +48,7 @@ export default function HomeScreen({ navigation }) {
       />
 
       <IndividualPost user={getSampleUser()} post={getSamplePost()} navigator={navigation}></IndividualPost>
-      <IndividualPost user={getSampleUser()} post={getSamplePost()}></IndividualPost>
+      <IndividualPost user={getSampleUser()} post={getSamplePost()} navigator={navigation}></IndividualPost>
     </View>
   );
 }

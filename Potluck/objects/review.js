@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const IndividualPost = ({user, post, navigator}) => {
+const Review = ({}) => {
 
     return (
     <View  style={styles.container}>
@@ -33,30 +33,5 @@ const IndividualPost = ({user, post, navigator}) => {
         </View>
     </View>
     );
-};
 
-const styles = StyleSheet.create({
-    container: {
-        width: "100%", 
-        justifyContent: 'space-between', 
-        borderWidth: 1, 
-        borderTopRightRadius:20, 
-        borderTopLeftRadius: 20, 
-        borderBottomLeftRadius: 20, 
-        borderBottomRightRadius: 20,
-        padding: 5,
-        margin: 5
-    },
-    image: {
-        width: 30,
-        height: 30, 
-        borderRadius: 30,
-        margin: 5,
-        marginRight: 10
-    },
-    text: {
-        fontSize: 15
-    }
-});
-
-export default IndividualPost;
+}
