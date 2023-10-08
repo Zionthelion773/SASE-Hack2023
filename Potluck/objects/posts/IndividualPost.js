@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 
 const IndividualPost = ({user, post}) => {
 
     return (
     <View  style={styles.container}>
         <View style={{flexDirection:'row'}}>
-            <View><Image source={user.imageSource} style={styles.image}/></View>
+            <View><TouchableOpacity onPress={() => navigation.navigate('Profile')}><Image source={user.imageSource} style={styles.image}/></TouchableOpacity></View>
             <View style={{flexDirection:'column'}}>
                 <View><Text style={styles.text}>{user.name}</Text></View>
                 <View><Text style={styles.text}>{post.location} · {post.types.join(', ')}</Text></View>

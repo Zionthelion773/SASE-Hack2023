@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 import IndividualPost from './objects/posts/IndividualPost';
 import {getSampleUser, getSamplePost} from './utilities/testdata';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ProfileScreen from './ProfileScreen';
 
 export default function App() {
   const [dish, setDish] = useState(''); // State for the input
