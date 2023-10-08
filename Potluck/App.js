@@ -8,48 +8,24 @@ import { Button, BackHandler, ActivityIndicator, View } from 'react-native';
 import SignInScreen from './SignInScreen';
 import { StackActions } from '@react-navigation/native';
 import EventNearMe from './EventNearMe';
+import MakePost from './MakePost';
 
 
 const Stack = createStackNavigator();
 
 export default function App() {
-
-    const [isLoading, setIsLoading] = React.useState(false);
-
-    while(isLoading){
-        return (
-        <View style={{backgroundColor:'white', flex: 1, justifyContent: 'center'}}>
-            <ActivityIndicator/>
-        </View>);
-    }
-
-    return (    
-        <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignIn">
-            <Stack.Screen name="SignIn" component={SignInScreen} options={{ title: 'Sign In' }} />
-            <Stack.Screen 
-            name="Home" 
-            component={HomeScreen} 
-            options={({ navigation }) => ({
-                title: 'Potluck App',
-                headerLeft: () => (
-                    <Button
-                        onPress={() => {
-                            navigation.dispatch(StackActions.popToTop());
-                            navigation.replace('SignIn');
-                        }}
-                        title="Logout"
-                        color="#000"
-                    />
-                    
-                )
-            })} 
-            
-            />
-            <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'User Profile' }} />
-            <Stack.Screen name="FoodNearMe" component={FoodNearMe} options={{ title: 'Food' }} /> 
-            <Stack.Screen name="EventNearMe" component={EventNearMe} options={{ title: 'School Events' }} />
-                </Stack.Navigator>
-            </NavigationContainer>
+  return (    
+      
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Screen name="SignIn" component={SignInScreen} options={{headerShown:false}} />
+        <Stack.Screen name="Home" component={HomeScreen} options= {{headerShown:false}}
+        />
+         <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'User Profile', headerTitleAlign: 'center', }} />
+        <Stack.Screen name="FoodNearMe" component={FoodNearMe} options={{ title: 'Food', headerTitleAlign: 'center',  }} /> 
+        <Stack.Screen name="EventNearMe" component={EventNearMe} options={{ title: 'School Events', headerTitleAlign: 'center',  }} />
+        <Stack.Screen name="MakePost" component={MakePost} options={{ title: ' Make Posts ', headerTitleAlign: 'center', }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

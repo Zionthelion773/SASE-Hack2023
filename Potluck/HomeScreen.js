@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal, ActivityIndicator } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons'
+import SignInScreen from './SignInScreen';
 import IndividualPost from './objects/posts/IndividualPost';
 import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
 import Review from './objects/posts/Review';
@@ -47,7 +49,26 @@ export default function HomeScreen({ navigation }) {
     };
 
     return (
+        
         <SafeAreaView style={styles.container}>
+
+            <View style={styles.header}>
+                <View style={styles.headerItems}>
+                    <MaterialIcons name='logout' size= {50} style={styles.icon} onPress={() => navigation.navigate('SignIn')} />
+                </View>
+
+                <View style={styles.headerItems}>
+                    <Text style={styles.headerText}> Potluck! </Text>
+                </View>
+
+                <View style={styles.headerItems}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                        <Image style={styles.profileImage} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSpLOH5QrBomi0Ct9U67OGbBVDWqHGl3WHmQ&usqp=CAU' }} />
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+
             <ScrollView style={styles.scrollContent}>
                 <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile', {user})}>
                     <Image
@@ -58,8 +79,8 @@ export default function HomeScreen({ navigation }) {
 
                 <Text style={styles.title}> Welcome!! </Text>
                 <View style={styles.centeredContent}>
-    <Text>Posts and Events in the area</Text>
-</View>
+                    <Text>Posts and Events in the area</Text>
+                </View>
                 
 
                 <View style={styles.imageRow}>
@@ -100,6 +121,11 @@ export default function HomeScreen({ navigation }) {
                 <TouchableOpacity style={styles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
                     <Text style={styles.buttonText}>Find Food Near Me</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity style={styles.makePostButton} onPress={() => navigation.navigate('MakePost')}>
+                    <MaterialIcons name='add' size= {50} style={styles.icon}   />
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.schoolEventsButton} onPress={() => navigation.navigate('EventNearMe')}>
                     <Text style={styles.buttonText}>Check School Events</Text>
                 </TouchableOpacity>
@@ -324,4 +350,40 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray',
         padding: 8,
     },
+bottomButtons: {
+    width: '100%',
+    height: '8%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#666090',
+},
+header: {
+    display: 'flex',
+    width: '100%',
+    height: '8%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#666090',
+
+
+},
+headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+},
+headerItems: {
+    marginVertical: 10
+},
+headerText: {
+    fontSize: 25
+},
+icon: {
+    height: 50,
+    width: 50
+}
 });
