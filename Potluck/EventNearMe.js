@@ -15,7 +15,7 @@ export default function EventNearMe() {
       id: 2,
       event: " 📚Squirrel Club Study Event (╯°□°)╯︵ ┻━┻ 📚",
       text:
-        "Get ready to hit the books with the Squirrel Club! Join us for a productive study session at the Library. We're providing a study-friendly environment along with snacks to keep you energized, including redbulls and chips. Don't flip the table—flip those pages and ace your exams with us! 📖🍿📚"
+        "Get ready to hit the books with the Squirrel Club!! Join us for a productive study session at the Library. We're providing a study-friendly environment along with snacks to keep you energized, including redbulls and chips. Don't flip the table—flip those pages and ace your exams with us! 📖🍿📚"
     },
     {
       id: 3,
