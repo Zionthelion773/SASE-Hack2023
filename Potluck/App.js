@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './ProfileScreen';
 import FoodNearMe from './FoodNearMe';  // <-- import the new screen
-import { Button, BackHandler } from 'react-native';
+import { Button, BackHandler, ActivityIndicator, View } from 'react-native';
 import SignInScreen from './SignInScreen';
 import { StackActions } from '@react-navigation/native';
 import EventNearMe from './EventNearMe';

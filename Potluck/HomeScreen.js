@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal, ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'
 import SignInScreen from './SignInScreen';
+import IndividualPost from './objects/posts/IndividualPost';
+import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
+import Review from './objects/posts/Review';
 
 export default function HomeScreen({ navigation }) {
     const [dish, setDish] = useState('');
@@ -9,6 +12,7 @@ export default function HomeScreen({ navigation }) {
     const [comment, setComment] = useState(''); // state for a new comment
     const [commentModalVisible, setCommentModalVisible] = useState(false); // modal visibility state
     const [activeImageId, setActiveImageId] = useState(null); // to track which image's comment button was pressed
+    const user = getCurrentUser(); 
 
     const [images, setImages] = useState([
         { id: '1', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh_cDQjjJyHUAB9l03_46LSDtAQvLdnXW73g&usqp=CAU', comments: [] },
@@ -66,7 +70,14 @@ export default function HomeScreen({ navigation }) {
             </View>
 
             <ScrollView style={styles.scrollContent}>
-                
+                <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile', {user})}>
+                    <Image
+                        style={styles.profileImage}
+                        source={getCurrentUser().imageSource}
+                    />
+                </TouchableOpacity>
+
+                <Text style={styles.title}> Welcome!! </Text>
                 <View style={styles.centeredContent}>
                     <Text>Posts and Events in the area</Text>
                 </View>
@@ -83,9 +94,13 @@ export default function HomeScreen({ navigation }) {
                         </View>
                     ))}
                 </View>
+                <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
+                <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
+                <Review user={getSampleUser()} review={getSampleReview()} navigator={navigation}></Review>
+
             </ScrollView>
 
-            <Modal visible={commentModalVisible} animationType="slide" transparent={true}>
+            <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
                 <View style={styles.modalBackground}>
                     <View style={styles.commentModal}>
                         <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
@@ -188,160 +203,160 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     paddingHorizontal: 20, // To ensure there's some spacing from the edges
     padding:40
-},
-title: {
-    fontSize: 40, // Increase the size as per your requirement
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 50, // Optional: Increase space above and below the title
-},
+    },
+    title: {
+        fontSize: 40, // Increase the size as per your requirement
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginVertical: 50, // Optional: Increase space above and below the title
+    },
 
-imageRow: {
-    flexDirection: 'column',  // Adjusted to display images in a column
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 40,
-},
-placeholderImage: {
-    width: 200,
-    height: 200,
-    marginVertical: 200,  // Space added between images vertically
-},
-imageRow: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 100,
-},
-placeholderImage: {
-    width: 200,
-    height: 200,
-    marginVertical: 200,
-},
-centeredContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    imageRow: {
+        flexDirection: 'column',  // Adjusted to display images in a column
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 40,
+    },
+    placeholderImage: {
+        width: 200,
+        height: 200,
+        marginVertical: 200,  // Space added between images vertically
+    },
+    imageRow: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 100,
+    },
+    placeholderImage: {
+        width: 200,
+        height: 200,
+        marginVertical: 200,
+    },
+    centeredContent: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     fontWeight: 'bold',
     color: 'red'
-},
-commentButton: {
-    color: 'blue',
-    marginTop: 5,
-},
-comment: {
-    fontSize: 12,
-    color: 'gray',
-},
-commentModal: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-},
-commentInput: {
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 20,
-},
-imageRow: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 20,
-},
-placeholderImage: {
-    width: 200,
-    height: 200,
-    marginBottom: 20, // reduced space between image and comments
-},
-comment: {
-    fontSize: 14,
-    color: 'gray',
-    marginBottom: 5, // to separate each comment
-},
-commentButton: {
-    color: 'blue',
-    marginBottom: 15, // space added between comments and comment button
-},
-modalBackground: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
-    justifyContent: 'center',
-    alignItems: 'center',
-},
-commentModal: {
-    width: '80%', // takes 80% of screen width
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 15, // rounded corners
-},
-commentInput: {
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding: 10,
-    marginBottom: 15,
-    borderRadius: 7, // slightly rounded edges
-},
-commentButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between', // spaces out the buttons
-},
-addButton: {
-    backgroundColor: '#3498db',
-    padding: 10,
-    borderRadius: 5,
-},
-addButtonText: {
-    color: 'white',
-    textAlign: 'center',
-},
-commentModal: {
-    width: '80%',
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 15,
-    shadowColor: "#000",
-    shadowOffset: {
-        width: 0,
-        height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-},
-commentTouch: {
-    borderRadius: 7,
-    borderColor: 'blue',
-    borderWidth: 1,
-    marginTop: 8,
-},
-commentButton: {
-    color: 'blue',
-    textAlign: 'center',
-    padding: 3,
-},
-commentButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 15,
-},
-postButton: {
-    backgroundColor: '#3498db',
-    padding: 8,
-    flex: 1,
-    marginRight: 5,
-    borderRadius: 5,
-},
-postButtonText: {
-    color: 'white',
-    textAlign: 'center',
-},
-cancelButton: {
-    backgroundColor: 'lightgray',
-    padding: 8,
-},
+    commentButton: {
+        color: 'blue',
+        marginTop: 5,
+    },
+    comment: {
+        fontSize: 12,
+        color: 'gray',
+    },
+    commentModal: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    commentInput: {
+        width: '100%',
+        borderColor: 'gray',
+        borderWidth: 1,
+        padding: 10,
+        marginBottom: 20,
+    },
+    imageRow: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 20,
+    },
+    placeholderImage: {
+        width: 200,
+        height: 200,
+        marginBottom: 20, // reduced space between image and comments
+    },
+    comment: {
+        fontSize: 14,
+        color: 'gray',
+        marginBottom: 5, // to separate each comment
+    },
+    commentButton: {
+        color: 'blue',
+        marginBottom: 15, // space added between comments and comment button
+    },
+    modalBackground: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    commentModal: {
+        width: '80%', // takes 80% of screen width
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 15, // rounded corners
+    },
+    commentInput: {
+        borderColor: 'gray',
+        borderWidth: 1,
+        padding: 10,
+        marginBottom: 15,
+        borderRadius: 7, // slightly rounded edges
+    },
+    commentButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between', // spaces out the buttons
+    },
+    addButton: {
+        backgroundColor: '#3498db',
+        padding: 10,
+        borderRadius: 5,
+    },
+    addButtonText: {
+        color: 'white',
+        textAlign: 'center',
+    },
+    commentModal: {
+        width: '80%',
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+    commentTouch: {
+        borderRadius: 7,
+        borderColor: 'blue',
+        borderWidth: 1,
+        marginTop: 8,
+    },
+    commentButton: {
+        color: 'blue',
+        textAlign: 'center',
+        padding: 3,
+    },
+    commentButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 15,
+    },
+    postButton: {
+        backgroundColor: '#3498db',
+        padding: 8,
+        flex: 1,
+        marginRight: 5,
+        borderRadius: 5,
+    },
+    postButtonText: {
+        color: 'white',
+        textAlign: 'center',
+    },
+    cancelButton: {
+        backgroundColor: 'lightgray',
+        padding: 8,
+    },
 bottomButtons: {
     width: '100%',
     height: '8%',
