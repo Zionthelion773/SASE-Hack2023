@@ -8,7 +8,7 @@ export default function ProfileScreen({ navigation }) {
       {/* Profile pic placeholder */}
       <Image 
         style={styles.profilePic}
-        source={{uri: 'https://via.placeholder.com/50'}}
+        source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSpLOH5QrBomi0Ct9U67OGbBVDWqHGl3WHmQ&usqp=CAU'}}
       />
 
       {/* Bio and Tier */}

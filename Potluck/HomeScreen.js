@@ -23,14 +23,12 @@ export default function HomeScreen({ navigation }) {
                 </TouchableOpacity>
 
                 <Text style={styles.title}>Potluck Dishes</Text>
-
                 <TextInput
                     style={styles.input}
                     placeholder="Enter a dish..."
                     value={dish}
                     onChangeText={setDish}
                 />
-
                 <Button title="Add Dish" onPress={addDish} />
 
                 <FlatList
@@ -41,13 +39,19 @@ export default function HomeScreen({ navigation }) {
                             <Text>{item.name}</Text>
                         </View>
                     )}
+          
                 />
             </ScrollView>
+            
+              {/* Fixed Food Near Me Button */}
+              <TouchableOpacity style={styles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
+                    <Text>Find Food Near Me</Text>
+                </TouchableOpacity>
 
-            {/* Fixed Food Near Me Button */}
-            <TouchableOpacity style={styles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
-                <Text>Find Food Near Me</Text>
-            </TouchableOpacity>
+                {/* New button for Check School Events */}
+                <TouchableOpacity style={styles.schoolEventsButton} onPress={() => navigation.navigate('EventNearMe')}>
+                    <Text>Check School Events</Text>
+                </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -81,18 +85,32 @@ const styles = StyleSheet.create({
     },
     profileButton: {
         position: 'absolute',
-        top: 10,
+        top: 0,
         right: 10,
-        padding: 5,
+        padding: 10,
     },
     profileImage: {
         width: 50,
         height: 50,
         borderRadius: 25,
     },
-    foodNearMeButton: {
-        alignItems: 'center',
-        padding: 10,
-        backgroundColor: '#ddd', // example background color
-    },
+
+    buttonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',  // This will place one button on each side
+      borderTopWidth: 1,
+      borderColor: '#ccc'
+  },
+
+  foodNearMeButton: {
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#ddd'
+  },
+
+  schoolEventsButton: {
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#ddd'
+  },
 });

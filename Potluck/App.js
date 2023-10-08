@@ -7,6 +7,8 @@ import FoodNearMe from './FoodNearMe';  // <-- import the new screen
 import { Button, BackHandler } from 'react-native';
 import SignInScreen from './SignInScreen';
 import { StackActions } from '@react-navigation/native';
+import EventNearMe from './EventNearMe';
+
 
 const Stack = createStackNavigator();
 
@@ -35,6 +37,7 @@ export default function App() {
         />
          <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'User Profile' }} />
         <Stack.Screen name="FoodNearMe" component={FoodNearMe} options={{ title: 'Food' }} /> 
+        <Stack.Screen name="EventNearMe" component={EventNearMe} options={{ title: 'School Events' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
