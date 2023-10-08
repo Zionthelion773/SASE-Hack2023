@@ -1,47 +1,31 @@
+import { userData, postData, reviewData } from './data.js'
+
+currentUser = new userData("Steve Sanchez", "Imma bum", "stevesanchez", 3.9, [], [], [], require('./../assets/pfp.jpg'));
+sampleUser = new userData("Dave Sanchez", "I'm just a glizzy gobbler looking for some mommy milk.", "davesanchez", 4.5, [], [], [], require('./../assets/pfp.jpg'));
+samplePost = new postData(currentUser, "Ayo!!! I have some extra glizzy and mommy milk for whoever wants it.", ["Meat", "Dairy"], require('./../assets/pfp.jpg'), "Delta Tau Delta");
+sampleReview = new reviewData(currentUser, "This guy is a bum", "He's a bum", 1, sampleUser);
+
+
 export const getSampleUser = () => {
 
-    return {
-        name: "Dave Sanchez",
-        email: "davesanchez@potluck.com",
-        imageSource: require('./../assets/pfp.jpg'),
-        bio: "I'm just a glizzy gobbler looking for some mommy milk.",
-        rating: 4.5
-    }
+    return sampleUser;
 
 };
 
 export const getSamplePost = () => {
 
-    return {
-        location: "Delta Tau Delta",
-        types: ["Meat", "Dairy"],
-        message: "Ayo!!! I have some extra glizzy and mommy milk for whoever wants it.",
-        comments: ['test'],
-        id: 1
-    }
+    return samplePost;
 
 };
 
 export const getCurrentUser = () =>{
 
-    return {
-        name: "Steve Sanchez",
-        email: "stevesanchez@potluck.com", 
-        imageSource: require('./../assets/pfp.jpg'),
-        bio: "Imma bum.",
-        rating: 3.9
-    }
+    return currentUser;
 
 };
 
 export const getSampleReview = () => {
 
-    return {
-        name: "Walter White",
-        email: "waltuh@potluck.com",
-        imageSource: { uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Walter_White_S5B.png/220px-Walter_White_S5B.png'},
-        message: "This guy is a bum.",
-        headline: "Bum",
-        reviewRating: 1.5
-    }
+    return sampleReview;
+
 };

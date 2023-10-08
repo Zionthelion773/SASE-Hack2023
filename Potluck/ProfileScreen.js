@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView, Modal, TextInput, TouchableOpacity  } from 'react-native';
 import { getCurrentUser, getSampleReview, getSampleUser } from './utilities/testdata';
 import Review from './objects/posts/Review';
+import { userData } from './utilities/data';
 
 export default function ProfileScreen({ navigation, route}) {
 
@@ -11,7 +12,7 @@ export default function ProfileScreen({ navigation, route}) {
   const [rating, setRating] = useState(0.5);
   const sampleUser = getSampleUser();
   const sampleReview = getSampleReview();
-  const [reviews, updateReviews] = useState([]); // state for all comments, initialized with a sample comment
+  const [reviews, updateReviews] = useState(route.params.user.reviews); // state for all comments, initialized with a sample comment
   
   
   const addReview = () => {
@@ -21,7 +22,10 @@ export default function ProfileScreen({ navigation, route}) {
       message: message,
       headline: headline,
     }
-    updateReviews([...reviews, <Review user={getCurrentUser()} userReviewed={route.params.user} review={review} navigator={navigation}></Review>]);
+
+    route.params.user.reviews.push(review);
+
+    updateReviews(route.params.user.reviews);
   };
 
   return (
@@ -84,7 +88,7 @@ export default function ProfileScreen({ navigation, route}) {
 
           <View style={{flexDirection: 'row'}}>
             <View style={{flex: 1}}>
-              {reviews.map((review) => (review))}
+              {reviews.map((userReview) => <Review user={getCurrentUser()} userReviewed={route.params.user} review={userReview} navigator={navigation}></Review>)}
             </View>
           </View>
           <Button title="Go Back" onPress={() => navigation.goBack()} /> 

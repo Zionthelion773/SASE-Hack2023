@@ -15,14 +15,14 @@ export default function HomeScreen({ navigation }) {
     const user = getCurrentUser(); 
 
     const [images, setImages] = useState([
-        { id: '1', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh_cDQjjJyHUAB9l03_46LSDtAQvLdnXW73g&usqp=CAU', comments: [] },
-        { id: '2', uri: 'https://thumbs.dreamstime.com/b/heart-shape-various-vegetables-fruits-healthy-food-concept-isolated-white-background-140287808.jpg', comments: [] },
-        { id: '3', uri: 'https://as2.ftcdn.net/v2/jpg/01/14/94/97/1000_F_114949767_xZQQ44nmmZRzvRFJ71szQundwrTSrVuf.jpg', comments: [] },
-        { id: '4', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU9lVq8fMZJOzOa9229AXJv9IoarhKHB3iRQ&usqp=CAU', comments: [] },
-        { id: '5', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh7MyVF5ZIUzn34gtIT9WmZVIcC7EalPWXcw&usqp=CAU', comments: [] },
-        { id: '6', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQbnyD8yXdt1E6Q4QV7UPHdjV_yqr4kUb2GA&usqp=CAU', comments: [] },
-        { id: '7', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTko1AHqotfjLFB6BAUbulrYmWzdnOVN3VCYg&usqp=CAU', comments: [] },
-        { id: '8', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        //{ id: '1', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh_cDQjjJyHUAB9l03_46LSDtAQvLdnXW73g&usqp=CAU', comments: [] },
+        //{ id: '2', uri: 'https://thumbs.dreamstime.com/b/heart-shape-various-vegetables-fruits-healthy-food-concept-isolated-white-background-140287808.jpg', comments: [] },
+       // { id: '3', uri: 'https://as2.ftcdn.net/v2/jpg/01/14/94/97/1000_F_114949767_xZQQ44nmmZRzvRFJ71szQundwrTSrVuf.jpg', comments: [] },
+       // { id: '4', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU9lVq8fMZJOzOa9229AXJv9IoarhKHB3iRQ&usqp=CAU', comments: [] },
+       // { id: '5', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh7MyVF5ZIUzn34gtIT9WmZVIcC7EalPWXcw&usqp=CAU', comments: [] },
+       // { id: '6', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQbnyD8yXdt1E6Q4QV7UPHdjV_yqr4kUb2GA&usqp=CAU', comments: [] },
+       // { id: '7', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTko1AHqotfjLFB6BAUbulrYmWzdnOVN3VCYg&usqp=CAU', comments: [] },
+       // { id: '8', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
          // ... repeat for other images if needed ...
         ]);
 
@@ -62,20 +62,15 @@ export default function HomeScreen({ navigation }) {
                 </View>
 
                 <View style={styles.headerItems}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                        <Image style={styles.profileImage} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSpLOH5QrBomi0Ct9U67OGbBVDWqHGl3WHmQ&usqp=CAU' }} />
+                    <TouchableOpacity onPress={() => navigation.navigate('Profile', {user})}>
+                        <Image style={styles.profileImage} source={getCurrentUser().imageSource} />
                     </TouchableOpacity>
                 </View>
 
             </View>
 
             <ScrollView style={styles.scrollContent}>
-                <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate('Profile', {user})}>
-                    <Image
-                        style={styles.profileImage}
-                        source={getCurrentUser().imageSource}
-                    />
-                </TouchableOpacity>
+                
 
                 <Text style={styles.title}> Welcome!! </Text>
                 <View style={styles.centeredContent}>
@@ -96,7 +91,6 @@ export default function HomeScreen({ navigation }) {
                 </View>
                 <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
                 <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
-                <Review user={getSampleUser()} review={getSampleReview()} navigator={navigation}></Review>
 
             </ScrollView>
 

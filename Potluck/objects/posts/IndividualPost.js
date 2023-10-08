@@ -46,6 +46,11 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
         <View>
             <Text style={{margin: 5}}>{post.message}</Text>
         </View>
+
+        <View style={{padding: 5}}>
+            <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU'}} style={styles.postImage}/>
+        </View>
+
         <View style={styles.commentsBlock}>
             {post.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt}</Text>)}
         </View>
@@ -89,15 +94,20 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30, 
         borderRadius: 30,
-        margin: 5,
+        marginHorizontal: 5,
         marginRight: 10
+    },
+    postImage: {
+        width: '100%',
+        height: 300,
+        borderRadius: 15,
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15
     },
     commentButton: {
-        color: 'blue',
-        marginTop: 5,
+        color: 'blue'
     },
     comment: {
         fontSize: 12,
