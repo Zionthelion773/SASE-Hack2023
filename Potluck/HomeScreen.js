@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, SafeAreaView} from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons'
+import SignInScreen from './SignInScreen';
 
 export default function HomeScreen({ navigation }) {
   const [dish, setDish] = useState('');
@@ -12,31 +14,79 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Potluck Dishes</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter a dish..."
-        value={dish}
-        onChangeText={setDish}
-      />
-      <Button title="Add Dish" onPress={addDish} />
-      <Button
-        title="EVENTS-NEAR-ME"
-        onPress={() => navigation.navigate('EventNearMe')}
-      />
-      <FlatList
-        data={dishes}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <SafeAreaView style={styles.listItem}>
-            <Text>{item.name}</Text>
-          </SafeAreaView>
-        )}
-      />
-    </SafeAreaView>
-  );
+    return (
+        
+        <SafeAreaView style={styles.container}>
+
+            <View style={styles.header}>
+                <View style={styles.headerItems}>
+                    <MaterialIcons name='logout' size= {50} style={styles.icon} onPress={() => navigation.navigate('SignIn')} />
+                </View>
+
+                <View style={styles.headerItems}>
+                    <Text style={styles.headerText}> Potluck! </Text>
+                </View>
+
+                <View style={styles.headerItems}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                        <Image style={styles.profileImage} source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSpLOH5QrBomi0Ct9U67OGbBVDWqHGl3WHmQ&usqp=CAU' }} />
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+
+            <ScrollView style={styles.scrollContent}>
+                
+                <View style={styles.centeredContent}>
+                    <Text>Posts and Events in the area</Text>
+                </View>
+                
+
+                <View style={styles.imageRow}>
+                    {images.map((image) => (
+                        <View key={image.id} style={styles.imageContainer}>
+                            <Image style={styles.placeholderImage} source={{ uri: image.uri }} />
+                            {image.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt}</Text>)}
+                            <TouchableOpacity style={styles.commentTouch} onPress={() => { setActiveImageId(image.id); setCommentModalVisible(true); }}>
+                                <Text style={styles.commentButton}>💬 Comment</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
+                </View>
+            </ScrollView>
+
+            <Modal visible={commentModalVisible} animationType="slide" transparent={true}>
+                <View style={styles.modalBackground}>
+                    <View style={styles.commentModal}>
+                        <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
+                        <View style={styles.commentButtons}>
+                            <TouchableOpacity style={styles.postButton} onPress={addComment}>
+                                <Text style={styles.postButtonText}>Post</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.cancelButton} onPress={() => setCommentModalVisible(false)}>
+                                <Text style={styles.cancelButtonText}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+            {/* Fixed Buttons at the Bottom */}
+            <View style={styles.bottomButtons}>
+                <TouchableOpacity style={styles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
+                    <Text style={styles.buttonText}>Find Food Near Me</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.makePostButton} onPress={() => navigation.navigate('MakePost')}>
+                    <MaterialIcons name='add' size= {50} style={styles.icon}   />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.schoolEventsButton} onPress={() => navigation.navigate('EventNearMe')}>
+                    <Text style={styles.buttonText}>Check School Events</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -170,4 +220,3 @@ cancelButton: {
     padding: 8,
 },
 });
->>>>>>> d595792c (best commit so far)
