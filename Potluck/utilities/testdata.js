@@ -15,7 +15,9 @@ export const getSamplePost = () => {
     return {
         location: "Delta Tau Delta",
         types: ["Meat", "Dairy"],
-        message: "Ayo!!! I have some extra glizzy and mommy milk for whoever wants it."
+        message: "Ayo!!! I have some extra glizzy and mommy milk for whoever wants it.",
+        comments: ['test'],
+        id: 1
     }
 
 };

@@ -1,67 +1,71 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, ScrollView, Modal } from 'react-native';
 
 export default function ProfileScreen({ navigation, route}) {
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <View>
+      <ScrollView>
+        <View style={styles.container}>
 
-        {/* Profile pic placeholder */}
-        <View style={styles.header}>
-          <Image 
-            style={styles.profilePic}
-            source={route.params.user.imageSource}
-          />
+          {/* Profile pic placeholder */}
+          <View style={styles.header}>
+            <Image 
+              style={styles.profilePic}
+              source={route.params.user.imageSource}
+            />
 
-          {/* Stars */}
-          <View style={{justifyContent: 'center', height: 100}}>
-            <Text style={styles.starsText}>{route.params.user.rating} ⭐</Text>
+            {/* Stars */}
+            <View style={{justifyContent: 'center', height: 100}}>
+              <Text style={styles.starsText}>{route.params.user.rating} ⭐</Text>
+            </View>
+
+
+          </View>
+
+          <View style={{height: 30}}>
+            <Text style={styles.title}>{route.params.user.name}</Text>
           </View>
 
 
-        </View>
-
-        <View style={{height: 30}}>
-          <Text style={styles.title}>{route.params.user.name}</Text>
-        </View>
 
 
 
-
-
-        <View style={{marginBottom: 10}}>
-          <Text style={[styles.bodyText, {textAlign: 'center'}]}>2nd Year Computer Science</Text>
-        </View>
+          <View style={{marginBottom: 10}}>
+            <Text style={[styles.bodyText, {textAlign: 'center'}]}>2nd Year Computer Science</Text>
+          </View>
 
 
 
 
-        <View style={styles.body}>
-          {/* Bio */}
-          <View style={styles.verticalContainer}>
-            <View style={styles.leftContainer}>
-              <Text style={[styles.boldAndBiggerText, {textAlign: 'left'}]}>Bio: </Text>
-              <Text style={[styles.bodyText, {textAlign: 'left'}]}>{route.params.user.bio}</Text>
+          <View style={styles.body}>
+            {/* Bio */}
+            <View style={styles.verticalContainer}>
+              <View style={styles.leftContainer}>
+                <Text style={[styles.boldAndBiggerText, {textAlign: 'left'}]}>Bio: </Text>
+                <Text style={[styles.bodyText, {textAlign: 'left'}]}>{route.params.user.bio}</Text>
+              </View>
+            </View>
+
+            <View style={styles.buffer}>
+            </View>
+
+            <View style={styles.verticalContainer}>
+              <View style={styles.leftContainer}>
+                <Text style={[styles.boldAndBiggerText, {marginTop: 10}]}>Reviews</Text>
+              </View>
+
+              <View style={[styles.rightContainer, {paddingBottom: 0}]}>
+                <Button title="+ Create New"/>
+              </View>
             </View>
           </View>
 
-          <View style={styles.buffer}>
-          </View>
-
-          <View style={styles.verticalContainer}>
-            <View style={styles.leftContainer}>
-              <Text style={[styles.boldAndBiggerText, {marginTop: 10}]}>Reviews</Text>
-            </View>
-
-            <View style={[styles.rightContainer, {paddingBottom: 0}]}>
-              <Button title="+ Create New"/>
-            </View>
-          </View>
+          <Button title="Go Back" onPress={() => navigation.goBack()} /> 
         </View>
+      </ScrollView>
 
-        <Button title="Go Back" onPress={() => navigation.goBack()} /> 
-      </View>
-    </ScrollView>
+      
+    </View>
   );
 }
 
