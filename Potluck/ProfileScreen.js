@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView, Modal, TextInput, TouchableOpacity  } from 'react-native';
 import { getCurrentUser, getSampleReview, getSampleUser } from './utilities/testdata';
 import Review from './objects/posts/Review';
+import {Picker} from '@react-native-picker/picker';
 import { userData } from './utilities/data';
 
 export default function ProfileScreen({ navigation, route}) {
@@ -13,7 +14,7 @@ export default function ProfileScreen({ navigation, route}) {
   const sampleUser = getSampleUser();
   const sampleReview = getSampleReview();
   const [reviews, updateReviews] = useState(route.params.user.reviews); // state for all comments, initialized with a sample comment
-  
+  const [selectedLanguage, setSelectedLanguage] = useState();
   
   const addReview = () => {
     setNewReviewModalVisible(false);
@@ -101,9 +102,25 @@ export default function ProfileScreen({ navigation, route}) {
       <Modal visible={newReviewModalVisible} animationType="fade" transparent={true}>
             <View style={styles.modalBackground}>
                 <View style={styles.commentModal}>
-                    <TextInput style={styles.commentInput} placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
-                    <TextInput style={styles.commentInput} placeholder="Add a body..." value={message} onChangeText={setMessage} />
-                    <TextInput style={styles.commentInput} placeholder="Add a rating..." value={rating} onChangeText={setRating} />
+                    <Picker 
+                      selectedValue={rating}
+                      onValueChange={(itemValue, itemIndex) =>
+                        setRating(itemValue)
+                      }>
+                      <Picker.Item label="0.5 ⭐" value={0.5} />
+                      <Picker.Item label="1 ⭐" value={1.0} />
+                      <Picker.Item label="1.5 ⭐" value={1.5} />
+                      <Picker.Item label="2 ⭐" value={2} />
+                      <Picker.Item label="2.5 ⭐" value={2.5} />
+                      <Picker.Item label="3 ⭐" value={3} />
+                      <Picker.Item label="3.5 ⭐" value={3.5} />
+                      <Picker.Item label="4 ⭐" value={4} />
+                      <Picker.Item label="4.5 ⭐" value={4.5} />
+                      <Picker.Item label="5 ⭐" value={5} />
+                    </Picker>
+                    <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
+                    <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a body..." value={message} onChangeText={setMessage} />
+                    
                     <View style={styles.commentButtons}>
                         <TouchableOpacity style={styles.postButton} onPress={addReview}>
                             <Text style={styles.postButtonText}>Post</Text>
