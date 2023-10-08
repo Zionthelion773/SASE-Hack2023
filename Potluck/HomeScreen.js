@@ -107,21 +107,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 20,
-<<<<<<< HEAD
-  },
-  listItem: {
-    width: '100%',
-    padding: 10,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-  },
-});
-=======
 },
-<<<<<<< HEAD
-});
->>>>>>> 7c99683c7832f42a3bfe3333178e205088201811
-=======
 imageRow: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -219,4 +205,28 @@ cancelButton: {
     backgroundColor: 'lightgray',
     padding: 8,
 },
+bottomButtons: {
+    width: '100%',
+    height: '8%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#666090',
+},
+header: {
+    display: 'flex',
+    width: '100%',
+    height: '8%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+  },
 });
+=======
+},
+});
+>>>>>>> 7c99683c7832f42a3bfe3333178e205088201811

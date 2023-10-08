@@ -9,17 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@react-navigation/bottom-tabs": "^6.5.9",
-    "@react-navigation/material-top-tabs": "^6.6.4",
-=======
->>>>>>> 7c99683c7832f42a3bfe3333178e205088201811
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
     "expo": "~49.0.13",
     "expo-status-bar": "~1.6.0",
+    "npm": "^10.2.0",
     "react": "18.2.0",
     "react-native": "0.72.5",
+<<<<<<< HEAD
 <<<<<<< HEAD
     "react-native-gesture-handler": "^2.13.1",
     "react-native-ico-material-design": "^4.1.5",
@@ -32,6 +29,11 @@
     "react-native-safe-area-context": "4.6.3",
     "react-navigation": "^5.0.0"
 >>>>>>> 9a122667 (a)
+=======
+    "react-native-gesture-handler": "~2.12.0",
+    "react-native-safe-area-context": "4.6.3",
+    "react-navigation": "^5.0.0"
+>>>>>>> ea5d0fc86ae7dfdba3d79cf616e18afd83484acd
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

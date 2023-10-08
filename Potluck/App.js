@@ -2,21 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
-<<<<<<< HEAD
-import EventNearMe from './EventNearMe';
-
-const Stack = createStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Potluck App' }} />
-        <Stack.Screen name="EventNearMe" component={EventNearMe} options={{ title: 'EVENTS-NEAR-ME' }} /> 
-=======
 import ProfileScreen from './ProfileScreen';
 import FoodNearMe from './FoodNearMe';  // <-- import the new screen
-import { Button, BackHandler } from 'react-native';
+import { Button, BackHandler, ActivityIndicator, View } from 'react-native';
 import SignInScreen from './SignInScreen';
 import { StackActions } from '@react-navigation/native';
 import EventNearMe from './EventNearMe';
