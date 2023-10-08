@@ -1,9 +1,39 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
     const [dish, setDish] = useState('');
     const [dishes, setDishes] = useState([]);
+    const [comment, setComment] = useState(''); // state for a new comment
+    const [commentModalVisible, setCommentModalVisible] = useState(false); // modal visibility state
+    const [activeImageId, setActiveImageId] = useState(null); // to track which image's comment button was pressed
+
+    const [images, setImages] = useState([
+        { id: '1', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        // ... repeat for other images if needed ...
+        { id: '2', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '3', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '4', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '5', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '6', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '7', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        { id: '8', uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU', comments: [] },
+        ]);
+
+    const addComment = () => {
+        if (comment.trim() !== '') {
+            const updatedImages = images.map(img => {
+                if (img.id === activeImageId) {
+                    return { ...img, comments: [...img.comments, comment] };
+                }
+                return img;
+            });
+            setImages(updatedImages);  // Use setImages to update the images state
+            setComment('');
+            setCommentModalVisible(false);
+        }
+    };
+
 
     const addDish = () => {
         if (dish.trim() !== '') {
@@ -31,6 +61,30 @@ export default function HomeScreen({ navigation }) {
                 />
                 <Button title="Add Dish" onPress={addDish} />
 
+                <View style={styles.imageRow}>
+            {images.map((image) => (
+                <View key={image.id} style={styles.imageContainer}>
+                    <Image style={styles.placeholderImage} source={{ uri: image.uri }} />
+                    <TouchableOpacity onPress={() => { setActiveImageId(image.id); setCommentModalVisible(true); }}>
+                        <Text style={styles.commentButton}>💬 Comment</Text>
+                    </TouchableOpacity>
+                    {image.comments.map((comment, index) => <Text key={index} style={styles.comment}>{comment}</Text>)}
+                </View>
+            ))}
+        </View>
+
+        <Modal visible={commentModalVisible} animationType="slide">
+            <View style={styles.commentModal}>
+                <TextInput
+                    style={styles.commentInput}
+                    placeholder="Add a comment..."
+                    value={comment}
+                    onChangeText={setComment}
+                />
+                <Button title="Post" onPress={addComment} />
+                <Button title="Cancel" onPress={() => setCommentModalVisible(false)} />
+            </View>
+        </Modal>
                 <FlatList
                     data={dishes}
                     keyExtractor={(item) => item.id}
@@ -41,6 +95,7 @@ export default function HomeScreen({ navigation }) {
                     )}
           
                 />
+                
             </ScrollView>
             
               {/* Fixed Food Near Me Button */}
@@ -113,4 +168,55 @@ const styles = StyleSheet.create({
       padding: 10,
       backgroundColor: '#ddd'
   },
+  imageRow: {
+    flexDirection: 'column ',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginVertical: 20,
+    paddingHorizontal: 20, // To ensure there's some spacing from the edges
+    padding:40
+},
+
+imageRow: {
+    flexDirection: 'column',  // Adjusted to display images in a column
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 40,
+},
+placeholderImage: {
+    width: 200,
+    height: 200,
+    marginVertical: 200,  // Space added between images vertically
+},
+imageRow: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 100,
+},
+placeholderImage: {
+    width: 200,
+    height: 200,
+    marginVertical: 200,
+},
+commentButton: {
+    color: 'blue',
+    marginTop: 5,
+},
+comment: {
+    fontSize: 12,
+    color: 'gray',
+},
+commentModal: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+},
+commentInput: {
+    width: '100%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 20,
+},
 });

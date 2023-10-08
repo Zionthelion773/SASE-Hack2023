@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 export default function ProfileScreen({ navigation }) {
   return (
     <View style={styles.container}>
-
       {/* Profile pic placeholder */}
       <Image 
         style={styles.profilePic}
