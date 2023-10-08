@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
+import IndividualPost from './objects/posts/IndividualPost';
+import {getSampleUser, getSamplePost} from './utilities/testdata';
 
 export default function App() {
   const [dish, setDish] = useState(''); // State for the input
@@ -35,6 +37,8 @@ export default function App() {
         )}
       />
 
+      <IndividualPost user={getSampleUser()} post={getSamplePost()}></IndividualPost>
+      <IndividualPost user={getSampleUser()} post={getSamplePost()}></IndividualPost>
       <StatusBar style="auto" />
     </View>
   );

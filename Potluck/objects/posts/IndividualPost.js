@@ -8,8 +8,8 @@ const IndividualPost = ({user, post}) => {
         <View style={{flexDirection:'row'}}>
             <View><Image source={user.imageSource} style={styles.image}/></View>
             <View style={{flexDirection:'column'}}>
-                <View><Text>{user.name}</Text></View>
-                <View><Text>{post.location} · {post.types.join(', ')}</Text></View>
+                <View><Text style={styles.text}>{user.name}</Text></View>
+                <View><Text style={styles.text}>{post.location} · {post.types.join(', ')}</Text></View>
             </View>
             
         </View>
@@ -28,14 +28,19 @@ const styles = StyleSheet.create({
         borderTopRightRadius:20, 
         borderTopLeftRadius: 20, 
         borderBottomLeftRadius: 20, 
-        borderBottomRightRadius: 20
+        borderBottomRightRadius: 20,
+        padding: 5,
+        margin: 5
     },
     image: {
-        width: 50,
-        height: 50, 
-        borderRadius: 50,
+        width: 30,
+        height: 30, 
+        borderRadius: 30,
         margin: 5,
         marginRight: 10
+    },
+    text: {
+        fontSize: 15
     }
 });
 
