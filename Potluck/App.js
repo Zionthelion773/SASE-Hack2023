@@ -32,13 +32,15 @@ export default function App() {
                       title="Logout"
                       color="#000"
                   />
+                  
               )
           })} 
+          
         />
          <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'User Profile' }} />
         <Stack.Screen name="FoodNearMe" component={FoodNearMe} options={{ title: 'Food' }} /> 
         <Stack.Screen name="EventNearMe" component={EventNearMe} options={{ title: 'School Events' }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+            </Stack.Navigator>
+        </NavigationContainer>
   );
 }
