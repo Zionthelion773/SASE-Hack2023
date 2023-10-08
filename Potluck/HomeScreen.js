@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
+import IndividualPost from './objects/posts/IndividualPost';
+import {getSampleUser, getSamplePost} from './utilities/testdata';
 
 export default function HomeScreen({ navigation }) {
   const [dish, setDish] = useState('');
@@ -43,6 +45,9 @@ export default function HomeScreen({ navigation }) {
           </View>
         )}
       />
+
+      <IndividualPost user={getSampleUser()} post={getSamplePost()} navigator={navigation}></IndividualPost>
+      <IndividualPost user={getSampleUser()} post={getSamplePost()}></IndividualPost>
     </View>
   );
 }

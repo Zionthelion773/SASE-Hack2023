@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity } from 'react-native';
 
-const IndividualPost = ({user, post}) => {
+const IndividualPost = ({user, post, navigator}) => {
 
     return (
     <View  style={styles.container}>
         <View style={{flexDirection:'row'}}>
-            <View><TouchableOpacity onPress={() => navigation.navigate('Profile')}><Image source={user.imageSource} style={styles.image}/></TouchableOpacity></View>
+            <View><TouchableOpacity onPress={() => navigator.navigate('Profile')}><Image source={user.imageSource} style={styles.image}/></TouchableOpacity></View>
             <View style={{flexDirection:'column'}}>
-                <View><Text style={styles.text}>{user.name}</Text></View>
+                <View><TouchableOpacity onPress={() => navigator.navigate('Profile')}><Text style={styles.text}>{user.name}</Text></TouchableOpacity></View>
                 <View><Text style={styles.text}>{post.location} · {post.types.join(', ')}</Text></View>
             </View>
             
