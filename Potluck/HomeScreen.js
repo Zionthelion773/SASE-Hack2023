@@ -44,9 +44,6 @@ export default function HomeScreen({ navigation }) {
         }
     };
 
-    const newPost = () => {
-        setShowModal(true);
-      };
 
     return (
         
@@ -121,29 +118,7 @@ export default function HomeScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
 
-            <Modal visible={showModal} animationType="slide">
-                <View style={styles.modalContainer}>
-                    <Text style={styles.modalTitle}>Choose Post Type</Text>
-                    <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => {
-                        setPostChoice('event');
-                        setShowModal(false);
-                    }}
-                    >
-                    <Text style={styles.modalButtonText}>Post an Event</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => {
-                        setPostChoice('food');
-                        setShowModal(false);
-                    }}
-                    >
-                    <Text style={styles.modalButtonText}>Give Excess Food Away</Text>
-                    </TouchableOpacity>
-                </View>
-            </Modal>
+        
 
         </SafeAreaView>
     );
