@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
 import HomeScreen from '../../HomeScreen';
+import { getCurrentUser } from '../../utilities/testdata';
 
 
 
@@ -11,7 +12,11 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
 
     const addComment = () => {
         if (comment.trim() !== '') {
-            post.comments.push(comment);
+            postComment = {
+                message: comment,
+                user: getCurrentUser()
+            }
+            post.comments.push(postComment);
             setCommentModalVisible(false);
             setComment('');
         }
@@ -47,12 +52,14 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
             <Text style={{margin: 5}}>{post.message}</Text>
         </View>
 
+
+
         <View style={{padding: 5}}>
-            <Image source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSntytKi83u6wRXBclcFJFfoEqV1AMZ_g53JQ&usqp=CAU'}} style={styles.postImage}/>
+            <Image source={post.postImage} style={styles.postImage}/>
         </View>
 
         <View style={styles.commentsBlock}>
-            {post.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt}</Text>)}
+            {post.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt.user.name}: {cmt.message}</Text>)}
         </View>
         <TouchableOpacity style={styles.commentTouch} onPress={() => {setCommentModalVisible(true)}}>
             <Text style={styles.commentButton}>💬 Comment</Text>
