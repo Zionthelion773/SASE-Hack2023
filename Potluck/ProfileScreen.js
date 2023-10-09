@@ -100,24 +100,29 @@ export default function ProfileScreen({ navigation, route}) {
       </ScrollView>
 
       <Modal visible={newReviewModalVisible} animationType="fade" transparent={true}>
+        
             <View style={styles.modalBackground}>
                 <View style={styles.commentModal}>
+                  <View style={{height: 100}}>
+
                     <Picker 
-                      selectedValue={rating}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setRating(itemValue)
-                      }>
-                      <Picker.Item label="0.5 ⭐" value={0.5} />
-                      <Picker.Item label="1 ⭐" value={1.0} />
-                      <Picker.Item label="1.5 ⭐" value={1.5} />
-                      <Picker.Item label="2 ⭐" value={2} />
-                      <Picker.Item label="2.5 ⭐" value={2.5} />
-                      <Picker.Item label="3 ⭐" value={3} />
-                      <Picker.Item label="3.5 ⭐" value={3.5} />
-                      <Picker.Item label="4 ⭐" value={4} />
-                      <Picker.Item label="4.5 ⭐" value={4.5} />
-                      <Picker.Item label="5 ⭐" value={5} />
-                    </Picker>
+                        selectedValue={rating}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setRating(itemValue)
+                        }>
+                        <Picker.Item label="0.5 ⭐" value={0.5} />
+                        <Picker.Item label="1 ⭐" value={1.0} />
+                        <Picker.Item label="1.5 ⭐" value={1.5} />
+                        <Picker.Item label="2 ⭐" value={2} />
+                        <Picker.Item label="2.5 ⭐" value={2.5} />
+                        <Picker.Item label="3 ⭐" value={3} />
+                        <Picker.Item label="3.5 ⭐" value={3.5} />
+                        <Picker.Item label="4 ⭐" value={4} />
+                        <Picker.Item label="4.5 ⭐" value={4.5} />
+                        <Picker.Item label="5 ⭐" value={5} />
+                      </Picker>
+                  </View>
+                    
                     <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
                     <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a body..." value={message} onChangeText={setMessage} />
                     
@@ -131,6 +136,7 @@ export default function ProfileScreen({ navigation, route}) {
                     </View>
                 </View>
             </View>
+          
         </Modal>
       
     </View>
@@ -179,6 +185,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
     justifyContent: 'center',
     alignItems: 'center',
+    height: '100%'
   },
   profilePic: {
     width: 100,
