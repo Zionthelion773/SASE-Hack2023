@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
@@ -10,7 +9,7 @@ import { StackActions } from '@react-navigation/native';
 import EventNearMe from './EventNearMe';
 import MakePost from './MakePost';
 
-
+import React, { useState, useEffect } from 'react';
 const Stack = createStackNavigator();
 
 export default function App() {

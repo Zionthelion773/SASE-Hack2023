@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
 
 
 
-export default function EventNearMe() {
-  const textBlurbs = [
+
+
+export default function EventNearMe({ route }) {
+  const [textBlurbs, setTextBlurbs] = useState([
     {
       id: 1,
       event: "🎾Tennis Club US Open Watch Party!🎾",
@@ -53,15 +54,22 @@ export default function EventNearMe() {
             event: "🛹 Skate Club Skate Day! 🛹",
             text:
             "Skateboarding fanatics, unite! It's Skate Club Skate Day, filled with flips, tricks, and some surprise snacks. Shred it up and fuel your skating passion! Don't miss out on these exciting events. Mark your calendars and join the fun! 🥪🍔🛹",
-            },
-  ];
-
+            }
+  ]);
+          useEffect(() => {
+            if (route.params?.newPost) {
+                setTextBlurbs(prevBlurbs => [{
+                    id: new Date().getTime().toString(),
+                    event: route.params.newPost.event,
+                    text: route.params.newPost.text
+                }, ...prevBlurbs]);
+            }
+          }, [route.params?.newPost]);
 
   const titlePressed = () => {
+
     
   }
-
-
   const [showFullText, setShowFullText] = useState({});
   const toggleShowFullText = (id) => {
     setShowFullText((prevState) => ({

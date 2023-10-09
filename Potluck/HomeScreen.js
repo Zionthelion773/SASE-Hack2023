@@ -60,7 +60,9 @@ export default function HomeScreen({ navigation }) {
                 <View style={styles.headerItems}>
                     <Text style={styles.headerText}> Potluck! </Text>
                 </View>
-
+                <TouchableOpacity style={styles.makePostButton} onPress={() => navigation.navigate('MakePost')}>
+    <MaterialIcons name='add' size= {50} style={styles.icon} />
+</TouchableOpacity>
                 <View style={styles.headerItems}>
                     <TouchableOpacity onPress={() => navigation.navigate('Profile', {user})}>
                         <Image style={styles.profileImage} source={getCurrentUser().imageSource} />
