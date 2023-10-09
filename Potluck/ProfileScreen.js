@@ -103,7 +103,7 @@ export default function ProfileScreen({ navigation, route}) {
         
             <View style={styles.modalBackground}>
                 <View style={styles.commentModal}>
-                  <View style={{height: 100}}>
+                  <View>
 
                     <Picker 
                         selectedValue={rating}

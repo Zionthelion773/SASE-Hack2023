@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOp
 import { MaterialIcons } from '@expo/vector-icons'
 import SignInScreen from './SignInScreen';
 import IndividualPost from './objects/posts/IndividualPost';
-import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
+import {getSampleUser, getSampleUser2, getSamplePost, getCurrentUser, getSampleReview, getSamplePost2} from './utilities/testdata';
 import Review from './objects/posts/Review';
 
 export default function HomeScreen({ navigation }) {
@@ -90,7 +90,7 @@ export default function HomeScreen({ navigation }) {
                     ))}
                 </View>
                 <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
-                <IndividualPost user={getSampleUser()} post={getSamplePost()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
+                <IndividualPost user={getSampleUser2()} post={getSamplePost2()} updateState={setCommentModalVisible} navigator={navigation}></IndividualPost>
 
             </ScrollView>
 
@@ -371,7 +371,6 @@ headerTitle: {
     color: 'white',
 },
 headerItems: {
-    marginVertical: 10
 },
 headerText: {
     fontSize: 25

@@ -13,7 +13,7 @@ export function reviewData(reviewUser, headline, message, reviewRating, userRevi
 }
 
 
-export function postData(user, message, types, imageSource, location){
+export function postData(user, message, types, imageSource, location, postImage, time){
     this.user = user;
     this.message = message;
     this.types = types;
@@ -21,6 +21,7 @@ export function postData(user, message, types, imageSource, location){
     this.location = location;
     this.comments = [];
     this.id = postId;
+    this.postImage = postImage
     postId++;
     posts.push(this);
 }
