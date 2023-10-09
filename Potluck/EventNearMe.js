@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Modal, TextInput, Button } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, { useState, useEffect } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 
 
-export default function EventNearMe() {
-  const textBlurbs = [
+
+
+
+export default function EventNearMe({ route }) {
+  const [textBlurbs, setTextBlurbs] = useState([
     {
       id: 1,
       event: "🎾Tennis Club US Open Watch Party!🎾",
@@ -52,9 +54,21 @@ export default function EventNearMe() {
             event: "🛹 Skate Club Skate Day! 🛹",
             text:
             "Skateboarding fanatics, unite! It's Skate Club Skate Day, filled with flips, tricks, and some surprise snacks. Shred it up and fuel your skating passion! Don't miss out on these exciting events. Mark your calendars and join the fun! 🥪🍔🛹",
-            },
-  ];
+            }
+  ]);
+          useEffect(() => {
+            if (route.params?.newPost) {
+                setTextBlurbs(prevBlurbs => [{
+                    id: new Date().getTime().toString(),
+                    event: route.params.newPost.event,
+                    text: route.params.newPost.text
+                }, ...prevBlurbs]);
+            }
+          }, [route.params?.newPost]);
+
   const titlePressed = () => {
+
+    
   }
   const [showFullText, setShowFullText] = useState({});
   const toggleShowFullText = (id) => {
@@ -68,12 +82,14 @@ export default function EventNearMe() {
     <View style={styles.container}>
       <ScrollView>
       <Text style={styles.title}>ALL SCHOOL EVENTS TODAY :-D!</Text>
+      <View style={styles.twoButtons}>
         <TouchableOpacity onPress={titlePressed}>
          <Text style={styles.button1}>SEARCH-DATE</Text>
         </TouchableOpacity>  
         <TouchableOpacity onPress={titlePressed}>
          <Text style={styles.button2}>CATEGORY</Text>
-        </TouchableOpacity>  
+        </TouchableOpacity>
+        </View>  
 
         {textBlurbs.map((blurb) => (
           <View style={styles.headerContainer} key={blurb.id}>
@@ -101,80 +117,83 @@ export default function EventNearMe() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#e0f0f0",
     flexDirection: "row",
   },
   
 
   title: {
-
-    backgroundColor: "lightgray",
+    backgroundColor: "#afd3f0",
     fontSize: 16,
     fontWeight: "bold",
     padding: 5,
-    top: 9,
-    right: 8,
-    borderWidth: 10,
-    borderColor: 'gold',
+    borderWidth: 2,
+    textAlign:'center',
     padding: 10,
-
+    marginTop: 15,
+  },
+  twoButtons: {
+    display:'flex',
+    flex:1,
+    flexDirection: 'row',
+    justifyContent:"space-evenly",
+    width: '100%',
+    marginVertical: 15,
   },
 
   button1: {
-    backgroundColor: "gray",
+    backgroundColor: "#afd3f0",
     fontSize: 8,
     fontWeight: "bold",
-    left: 280,
-    padding: 5,
-    bottom: 48,
-    borderWidth: 4,
-    borderColor: 'gold',
-
+    padding: 10,
+    borderWidth: 2,
+    paddingHorizontal:40,
+ 
   },
 
   button2: {
-    backgroundColor: "white",
+    backgroundColor: "#afd3f0",
     fontSize: 8,
     fontWeight: "bold",
-    left: 280,
-    padding: 5,
-    bottom: 48,
-    borderWidth: 4,
-    borderColor: 'gold',
-
+    padding: 10,
+    borderWidth: 2,
+    paddingHorizontal:40,
   },
 
   event: {
     backgroundColor: "lightblue",
     fontSize: 14,
     fontWeight: "bold",
-    padding: 10,
+    paddingTop: 10,
     alignSelf: "center",
     marginBottom: 10,
 
   },
 
   headerContainer: {
-    backgroundColor: "lightblue",
-    padding: 10,
+    backgroundColor: "white",
+    width: '95%',
     alignSelf: "center",
     marginBottom: 20,
-
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderRadius: 15,
   },
 
   textContainer: {},
   truncatedText: {
     fontSize: 16,
-    fontFamily: "cursive",
-    
+    fontFamily: "Times New Roman",
+    padding: 10,
   },
 
   fullText: {
     fontSize: 16,
-    fontFamily: "cursive",
-
+    fontFamily: "Times New Roman",
+    padding: 10,
   },
   seeMore: {
     color: "blue",
+    padding: 10,
   },
 });

@@ -1,40 +1,26 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Image, TouchableOpacity, SafeAreaView, ScrollView, Modal } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'
+import { Text, StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 
-export default function MakePost() {
+export default function MakePost({ navigation }) {
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventDetails, setEventDetails] = useState('');
+
+    const postEvent = () => {
+        if(eventTitle.trim() !== '' && eventDetails.trim() !== '') {
+            navigation.navigate('EventNearMe', {
+                newPost: {
+                    event: eventTitle,
+                    text: eventDetails
+                }
+            });
+        } else {
+            alert("Please fill in both fields!");
+        }
+    };
+
     return (
-        const postComment = () => {
-            if (comment.trim() !== '') { // Changed 'Event.trim()' to 'comment.trim()'
-              const postComment = {
-                poster: getCurrentUser(),
-                message: comment,
-              };
-              post.comments.push(postComment);
-              setPostModalVisible(false); // Changed 'setCommentModalVisible' to 'setPostModalVisible'
-              setComment('');
-            }
-          };
-        (
-            <SafeAreaView style={styles.container}>
-                    <Modal visible={commentModalVisible} animationType="slide" transparent={true}>
-                        <View style={styles.modalBackground}>
-                            <View style={styles.commentModal}>
-                                <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
-                                <View style={styles.commentButtons}>
-                                    <TouchableOpacity style={styles.postButton} onPress={addComment}>
-                                        <Text style={styles.postButtonText}>Post</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={styles.cancelButton} onPress={() => setCommentModalVisible(false)}>
-                                        <Text style={styles.cancelButtonText}>Cancel</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </View>
-                    </Modal>
-                    </SafeAreaView>
-          );
-        };
-    
+        <View>
+            <Text> Wassup dawg</Text>
+        </View>
     )
 }

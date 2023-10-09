@@ -2,6 +2,8 @@ import React, { useState} from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView, Modal, TextInput, TouchableOpacity  } from 'react-native';
 import { getCurrentUser, getSampleReview, getSampleUser } from './utilities/testdata';
 import Review from './objects/posts/Review';
+import {Picker} from '@react-native-picker/picker';
+import { userData } from './utilities/data';
 
 export default function ProfileScreen({ navigation, route}) {
 
@@ -11,8 +13,8 @@ export default function ProfileScreen({ navigation, route}) {
   const [rating, setRating] = useState(0.5);
   const sampleUser = getSampleUser();
   const sampleReview = getSampleReview();
-  const [reviews, updateReviews] = useState([]); // state for all comments, initialized with a sample comment
-  
+  const [reviews, updateReviews] = useState(route.params.user.reviews); // state for all comments, initialized with a sample comment
+  const [selectedLanguage, setSelectedLanguage] = useState();
   
   const addReview = () => {
     setNewReviewModalVisible(false);
@@ -21,11 +23,14 @@ export default function ProfileScreen({ navigation, route}) {
       message: message,
       headline: headline,
     }
-    updateReviews([...reviews, <Review user={getCurrentUser()} userReviewed={route.params.user} review={review} navigator={navigation}></Review>]);
+
+    route.params.user.reviews.push(review);
+
+    updateReviews(route.params.user.reviews);
   };
 
   return (
-    <View>
+    <View style={styles.page}>
       <ScrollView style={styles.scrollContent}>
         <View style={styles.container}>
 
@@ -84,7 +89,7 @@ export default function ProfileScreen({ navigation, route}) {
 
           <View style={{flexDirection: 'row'}}>
             <View style={{flex: 1}}>
-              {reviews.map((review) => (review))}
+              {reviews.map((userReview) => <Review user={getCurrentUser()} userReviewed={route.params.user} review={userReview} navigator={navigation}></Review>)}
             </View>
           </View>
           <Button title="Go Back" onPress={() => navigation.goBack()} /> 
@@ -95,11 +100,32 @@ export default function ProfileScreen({ navigation, route}) {
       </ScrollView>
 
       <Modal visible={newReviewModalVisible} animationType="fade" transparent={true}>
+        
             <View style={styles.modalBackground}>
                 <View style={styles.commentModal}>
-                    <TextInput style={styles.commentInput} placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
-                    <TextInput style={styles.commentInput} placeholder="Add a body..." value={message} onChangeText={setMessage} />
-                    <TextInput style={styles.commentInput} placeholder="Add a rating..." value={rating} onChangeText={setRating} />
+                  <View style={{height: 100}}>
+
+                    <Picker 
+                        selectedValue={rating}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setRating(itemValue)
+                        }>
+                        <Picker.Item label="0.5 ⭐" value={0.5} />
+                        <Picker.Item label="1 ⭐" value={1.0} />
+                        <Picker.Item label="1.5 ⭐" value={1.5} />
+                        <Picker.Item label="2 ⭐" value={2} />
+                        <Picker.Item label="2.5 ⭐" value={2.5} />
+                        <Picker.Item label="3 ⭐" value={3} />
+                        <Picker.Item label="3.5 ⭐" value={3.5} />
+                        <Picker.Item label="4 ⭐" value={4} />
+                        <Picker.Item label="4.5 ⭐" value={4.5} />
+                        <Picker.Item label="5 ⭐" value={5} />
+                      </Picker>
+                  </View>
+                    
+                    <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a headline..." value={headline} onChangeText={setHeadline} />
+                    <TextInput style={styles.commentInput} placeholderTextColor="gray" placeholder="Add a body..." value={message} onChangeText={setMessage} />
+                    
                     <View style={styles.commentButtons}>
                         <TouchableOpacity style={styles.postButton} onPress={addReview}>
                             <Text style={styles.postButtonText}>Post</Text>
@@ -110,6 +136,7 @@ export default function ProfileScreen({ navigation, route}) {
                     </View>
                 </View>
             </View>
+          
         </Modal>
       
     </View>
@@ -117,8 +144,11 @@ export default function ProfileScreen({ navigation, route}) {
 }
 
 const styles = StyleSheet.create({
+  page: {
+    backgroundColor: '#e0f0f0'
+  },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#e0f0f0',
     alignItems: 'center',
     padding: 20,
     justifyContent: 'flex-start',
@@ -158,6 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
     justifyContent: 'center',
     alignItems: 'center',
+    height: '100%'
   },
   profilePic: {
     width: 100,

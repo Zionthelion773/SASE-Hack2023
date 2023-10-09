@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, KeyboardAvoidingView, Image, TouchableOpacity, Modal } from 'react-native';
 import HomeScreen from '../../HomeScreen';
+import { getCurrentUser } from '../../utilities/testdata';
 
 
 
@@ -11,7 +12,11 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
 
     const addComment = () => {
         if (comment.trim() !== '') {
-            post.comments.push(comment);
+            postComment = {
+                message: comment,
+                user: getCurrentUser()
+            }
+            post.comments.push(postComment);
             setCommentModalVisible(false);
             setComment('');
         }
@@ -46,28 +51,37 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
         <View>
             <Text style={{margin: 5}}>{post.message}</Text>
         </View>
+
+
+
+        <View style={{padding: 5}}>
+            <Image source={post.postImage} style={styles.postImage}/>
+        </View>
+
         <View style={styles.commentsBlock}>
-            {post.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt}</Text>)}
+            {post.comments.map((cmt, index) => <Text key={index} style={styles.comment}>{cmt.user.name}: {cmt.message}</Text>)}
         </View>
         <TouchableOpacity style={styles.commentTouch} onPress={() => {setCommentModalVisible(true)}}>
             <Text style={styles.commentButton}>💬 Comment</Text>
         </TouchableOpacity>
 
-        <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
-            <View style={styles.modalBackground}>
-                <View style={styles.commentModal}>
-                    <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
-                    <View style={styles.commentButtons}>
-                        <TouchableOpacity style={styles.postButton} onPress={addComment}>
-                            <Text style={styles.postButtonText}>Post</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.cancelButton} onPress={() => {setCommentModalVisible(false), setComment('')}}>
-                            <Text style={styles.cancelButtonText}>Cancel</Text>
-                        </TouchableOpacity>
+            <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
+                
+                    <View style={styles.modalBackground}>
+                        <View style={styles.commentModal}>
+                            <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
+                            <View style={styles.commentButtons}>
+                                <TouchableOpacity style={styles.postButton} onPress={addComment}>
+                                    <Text style={styles.postButtonText}>Post</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.cancelButton} onPress={() => {setCommentModalVisible(false), setComment('')}}>
+                                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
-                </View>
-            </View>
-        </Modal>
+              
+            </Modal>
 
     </View>
     );
@@ -77,27 +91,29 @@ const styles = StyleSheet.create({
     container: {
         width: "100%", 
         justifyContent: 'space-between', 
-        borderWidth: 1, 
-        borderTopRightRadius:20, 
-        borderTopLeftRadius: 20, 
-        borderBottomLeftRadius: 20, 
-        borderBottomRightRadius: 20,
+        borderWidth: 2, 
+        borderRadius: 20,
         padding: 5,
-        margin: 5
+        margin: 5, 
     },
     image: {
         width: 30,
         height: 30, 
         borderRadius: 30,
-        margin: 5,
+        marginHorizontal: 5,
         marginRight: 10
+    },
+    postImage: {
+        width: '100%',
+        height: 300,
+        borderRadius: 15,
+        alignSelf: 'center'
     },
     text: {
         fontSize: 15
     },
     commentButton: {
-        color: 'blue',
-        marginTop: 5,
+        color: 'blue'
     },
     comment: {
         fontSize: 12,
