@@ -82,15 +82,12 @@ export default function EventNearMe({ route }) {
     <View style={styles.container}>
       <ScrollView>
       <Text style={styles.title}>ALL SCHOOL EVENTS TODAY :-D!</Text>
-
-      <View style={styles.twoButtons}>
         <TouchableOpacity onPress={titlePressed}>
          <Text style={styles.button1}>SEARCH-DATE</Text>
         </TouchableOpacity>  
         <TouchableOpacity onPress={titlePressed}>
          <Text style={styles.button2}>CATEGORY</Text>
-        </TouchableOpacity>
-      </View>
+        </TouchableOpacity>  
 
         {textBlurbs.map((blurb) => (
           <View style={styles.headerContainer} key={blurb.id}>
@@ -121,45 +118,47 @@ export default function EventNearMe({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e0f0f0",
+    backgroundColor: "white",
     flexDirection: "row",
     
   },
 
   title: {
-    backgroundColor: "#afd3f0",
+    backgroundColor: "lightgray",
     fontSize: 16,
     fontWeight: "bold",
     padding: 5,
-    borderWidth: 2,
-    textAlign:'center',
+    top: 9,
+    right: 8,
+    borderWidth: 10,
+    borderColor: 'gold',
+
     padding: 10,
-    marginTop: 15,
-  },
-  twoButtons: {
-    display:'flex',
-    flex:1,
-    flexDirection: 'row',
-    justifyContent:"space-evenly",
-    width: '100%',
-    marginVertical: 15,
   },
   button1: {
-    backgroundColor: "#afd3f0",
+    backgroundColor: "gray",
     fontSize: 8,
     fontWeight: "bold",
-    padding: 10,
-    borderWidth: 2,
-    paddingHorizontal:40,
+    left: 280,
+    padding: 5,
+    bottom: 48,
+    borderWidth: 4,
+    borderColor: 'gold',
+
+
  
   },
   button2: {
-    backgroundColor: "#afd3f0",
+    backgroundColor: "white",
     fontSize: 8,
     fontWeight: "bold",
-    padding: 10,
-    borderWidth: 2,
-    paddingHorizontal:40,
+    left: 280,
+    padding: 5,
+    bottom: 48,
+    borderWidth: 4,
+    borderColor: 'gold',
+
+ 
   },
   
 
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     fontSize: 14,
     fontWeight: "bold",
-    paddingTop: 10,
+    padding: 10,
     alignSelf: "center",
     marginBottom: 10,
 
@@ -175,29 +174,26 @@ const styles = StyleSheet.create({
 
   headerContainer: {
     backgroundColor: "white",
-    width: '95%',
+    padding: 10,
     alignSelf: "center",
     marginBottom: 20,
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderRadius: 15,
+
+
   },
 
   textContainer: {},
   truncatedText: {
     fontSize: 16,
     fontFamily: "Times New Roman",
-    padding: 10,
+    
   },
 
   fullText: {
     fontSize: 16,
     fontFamily: "Times New Roman",
-    padding: 10,
   },
 
   seeMore: {
     color: "blue",
-    padding: 10,
   },
 });
