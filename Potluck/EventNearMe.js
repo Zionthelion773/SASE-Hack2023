@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Modal, TextInput, Button } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 export default function EventNearMe() {
   const textBlurbs = [
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
   },
+  
 
   title: {
 
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
   },
 
   event: {
-    backgroundColor: "white",
+    backgroundColor: "lightblue",
     fontSize: 14,
     fontWeight: "bold",
     padding: 10,
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
   },
 
   headerContainer: {
-    backgroundColor: "white",
+    backgroundColor: "lightblue",
     padding: 10,
     alignSelf: "center",
     marginBottom: 20,

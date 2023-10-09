@@ -4,8 +4,6 @@ import { MaterialIcons } from '@expo/vector-icons'
 import SignInScreen from './SignInScreen';
 
 export default function HomeScreen({ navigation }) {
-    const [dish, setDish] = useState('');
-    const [dishes, setDishes] = useState([]);
     const [comment, setComment] = useState(''); // state for a new comment
     const [commentModalVisible, setCommentModalVisible] = useState(false); // modal visibility state
     const [activeImageId, setActiveImageId] = useState(null); // to track which image's comment button was pressed
@@ -35,15 +33,6 @@ export default function HomeScreen({ navigation }) {
             setCommentModalVisible(false);
         }
     };
-
-
-    const addDish = () => {
-        if (dish.trim() !== '') {
-            setDishes([...dishes, { id: Date.now().toString(), name: dish }]);
-            setDish('');
-        }
-    };
-
 
     return (
         
@@ -128,8 +117,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        
-
 
     },
     scrollContent: {
