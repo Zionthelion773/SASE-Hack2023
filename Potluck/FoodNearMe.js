@@ -70,8 +70,6 @@ export default function FoodNearMe({ navigation }) {
 
     return (
         <View style={styles.container}>
-
-
             {/* Grid for options */}
             <View style={styles.grid}>
                 
@@ -184,11 +182,12 @@ export default function FoodNearMe({ navigation }) {
     );
 }
 const styles = StyleSheet.create({
+    
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f9f9f9'  // A soft background color
+        backgroundColor: '#e0f0f0',  // A soft background color
     },
     grid: {
         flexDirection: 'row',

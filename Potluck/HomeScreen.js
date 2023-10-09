@@ -5,10 +5,9 @@ import SignInScreen from './SignInScreen';
 import IndividualPost from './objects/posts/IndividualPost';
 import {getSampleUser, getSamplePost, getCurrentUser, getSampleReview} from './utilities/testdata';
 import Review from './objects/posts/Review';
+import { globalStyles } from './global';
 
 export default function HomeScreen({ navigation }) {
-    const [dish, setDish] = useState('');
-    const [dishes, setDishes] = useState([]);
     const [comment, setComment] = useState(''); // state for a new comment
     const [commentModalVisible, setCommentModalVisible] = useState(false); // modal visibility state
     const [activeImageId, setActiveImageId] = useState(null); // to track which image's comment button was pressed
@@ -40,42 +39,34 @@ export default function HomeScreen({ navigation }) {
         }
     };
 
-
-    const addDish = () => {
-        if (dish.trim() !== '') {
-            setDishes([...dishes, { id: Date.now().toString(), name: dish }]);
-            setDish('');
-        }
-    };
-
     return (
         
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={globalStyles.home_container}>
 
-            <View style={styles.header}>
-                <View style={styles.headerItems}>
-                    <MaterialIcons name='logout' size= {50} style={styles.icon} onPress={() => navigation.navigate('SignIn')} />
+            <View style={globalStyles.header}>
+                <View style={globalStyles.headerItems}>
+                    <MaterialIcons name='logout' size= {50} style={globalStyles.icon} onPress={() => navigation.navigate('SignIn')} />
                 </View>
 
-                <View style={styles.headerItems}>
-                    <Text style={styles.headerText}> Potluck! </Text>
+                <View style={globalStyles.headerItems}>
+                    <Text style={globalStyles.headerText}> Potluck! </Text>
                 </View>
+<<<<<<< HEAD
                 <View style={styles.headerItems}>
+=======
+
+                <View style={globalStyles.headerItems}>
+>>>>>>> 46ae3f9dd2602a9a40383e9a6055380cf1b38888
                     <TouchableOpacity onPress={() => navigation.navigate('Profile', {user})}>
-                        <Image style={styles.profileImage} source={getCurrentUser().imageSource} />
+                        <Image style={globalStyles.profileImage} source={getCurrentUser().imageSource} />
                     </TouchableOpacity>
                 </View>
 
             </View>
 
-            <ScrollView style={styles.scrollContent}>
-                
+            <ScrollView style={globalStyles.scrollContent}>
 
-                <Text style={styles.title}> Welcome!! </Text>
-                <View style={styles.centeredContent}>
-                    <Text>Posts and Events in the area</Text>
-                </View>
-                
+                <Text style={globalStyles.title}> Welcome!! </Text>
 
                 <View style={styles.imageRow}>
                     {images.map((image) => (
@@ -111,16 +102,16 @@ export default function HomeScreen({ navigation }) {
 
             {/* Fixed Buttons at the Bottom */}
             <View style={styles.bottomButtons}>
-                <TouchableOpacity style={styles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
-                    <Text style={styles.buttonText}>Find Food Near Me</Text>
+                <TouchableOpacity style={globalStyles.foodNearMeButton} onPress={() => navigation.navigate('FoodNearMe')}>
+                    <Text style={styles.buttonText}>Food Near Me</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.makePostButton} onPress={() => navigation.navigate('MakePost')}>
-                    <MaterialIcons name='add' size= {50} style={styles.icon}   />
+                <TouchableOpacity style={globalStyles.makePostButton} onPress={() => navigation.navigate('MakePost')}>
+                    <MaterialIcons name='add' size= {50} style={globalStyles.icon}   />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.schoolEventsButton} onPress={() => navigation.navigate('EventNearMe')}>
-                    <Text style={styles.buttonText}>Check School Events</Text>
+                <TouchableOpacity style={globalStyles.schoolEventsButton} onPress={() => navigation.navigate('EventNearMe')}>
+                    <Text style={styles.buttonText}>School Events</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -128,19 +119,7 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    scrollContent: {
-        flex: 1,
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
+
     input: {
         width: '100%',
         borderColor: 'gray',
@@ -154,56 +133,14 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
     },
-    profileButton: {
-        position: 'absolute',
-        top: 0,
-        right: 10,
-        padding: 10,
-    },
-    profileImage: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-    },
-
-    buttonContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',  // This will place one button on each side
-      borderTopWidth: 1,
-      borderColor: '#ccc'
-  },
-
-  foodNearMeButton: {
-      alignItems: 'center',
-      padding: 10,
-      backgroundColor: '#ddd'
-  },
-
-  schoolEventsButton: {
-      alignItems: 'center',
-      padding: 10,
-      backgroundColor: '#ddd'
-  },
-  imageRow: {
-    flexDirection: 'column ',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 20,
-    paddingHorizontal: 20, // To ensure there's some spacing from the edges
-    padding:40
-    },
-    title: {
-        fontSize: 40, // Increase the size as per your requirement
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginVertical: 50, // Optional: Increase space above and below the title
-    },
 
     imageRow: {
-        flexDirection: 'column',  // Adjusted to display images in a column
-        justifyContent: 'center',
+        flexDirection: 'column ',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        marginVertical: 40,
+        marginVertical: 20,
+        paddingHorizontal: 20, // To ensure there's some spacing from the edges
+        padding:40
     },
     placeholderImage: {
         width: 200,
@@ -343,40 +280,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray',
         padding: 8,
     },
-bottomButtons: {
-    width: '100%',
-    height: '8%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#666090',
-},
-header: {
-    display: 'flex',
-    width: '100%',
-    height: '8%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#666090',
+    bottomButtons: {
+        width: '100%',
+        height: '8%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#9b82ba',
+        paddingHorizontal: 25,
+    },
 
-
-},
-headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-},
-headerItems: {
-    marginVertical: 10
-},
-headerText: {
-    fontSize: 25
-},
-icon: {
-    height: 50,
-    width: 50
-}
 });

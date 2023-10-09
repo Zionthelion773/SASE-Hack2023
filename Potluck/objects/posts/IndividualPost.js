@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, Image, TouchableOpacity, Modal } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TextInput, Button, FlatList, KeyboardAvoidingView, Image, TouchableOpacity, Modal } from 'react-native';
 import HomeScreen from '../../HomeScreen';
 
 
@@ -58,21 +58,23 @@ const IndividualPost = ({user, post, updateState, navigator}) => {
             <Text style={styles.commentButton}>💬 Comment</Text>
         </TouchableOpacity>
 
-        <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
-            <View style={styles.modalBackground}>
-                <View style={styles.commentModal}>
-                    <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
-                    <View style={styles.commentButtons}>
-                        <TouchableOpacity style={styles.postButton} onPress={addComment}>
-                            <Text style={styles.postButtonText}>Post</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.cancelButton} onPress={() => {setCommentModalVisible(false), setComment('')}}>
-                            <Text style={styles.cancelButtonText}>Cancel</Text>
-                        </TouchableOpacity>
+            <Modal visible={commentModalVisible} animationType="fade" transparent={true}>
+                
+                    <View style={styles.modalBackground}>
+                        <View style={styles.commentModal}>
+                            <TextInput style={styles.commentInput} placeholder="Add a comment..." value={comment} onChangeText={setComment} />
+                            <View style={styles.commentButtons}>
+                                <TouchableOpacity style={styles.postButton} onPress={addComment}>
+                                    <Text style={styles.postButtonText}>Post</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.cancelButton} onPress={() => {setCommentModalVisible(false), setComment('')}}>
+                                    <Text style={styles.cancelButtonText}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
-                </View>
-            </View>
-        </Modal>
+              
+            </Modal>
 
     </View>
     );
@@ -82,13 +84,10 @@ const styles = StyleSheet.create({
     container: {
         width: "100%", 
         justifyContent: 'space-between', 
-        borderWidth: 1, 
-        borderTopRightRadius:20, 
-        borderTopLeftRadius: 20, 
-        borderBottomLeftRadius: 20, 
-        borderBottomRightRadius: 20,
+        borderWidth: 2, 
+        borderRadius: 20,
         padding: 5,
-        margin: 5
+        margin: 5, 
     },
     image: {
         width: 30,
