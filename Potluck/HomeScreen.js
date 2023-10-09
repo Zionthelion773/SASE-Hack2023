@@ -51,12 +51,8 @@ export default function HomeScreen({ navigation }) {
                 <View style={globalStyles.headerItems}>
                     <Text style={globalStyles.headerText}> Potluck! </Text>
                 </View>
-<<<<<<< HEAD
-                <View style={styles.headerItems}>
-=======
 
                 <View style={globalStyles.headerItems}>
->>>>>>> 46ae3f9dd2602a9a40383e9a6055380cf1b38888
                     <TouchableOpacity onPress={() => navigation.navigate('Profile', {user})}>
                         <Image style={globalStyles.profileImage} source={getCurrentUser().imageSource} />
                     </TouchableOpacity>
