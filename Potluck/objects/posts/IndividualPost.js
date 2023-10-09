@@ -84,13 +84,10 @@ const styles = StyleSheet.create({
     container: {
         width: "100%", 
         justifyContent: 'space-between', 
-        borderWidth: 1, 
-        borderTopRightRadius:20, 
-        borderTopLeftRadius: 20, 
-        borderBottomLeftRadius: 20, 
-        borderBottomRightRadius: 20,
+        borderWidth: 2, 
+        borderRadius: 20,
         padding: 5,
-        margin: 5
+        margin: 5, 
     },
     image: {
         width: 30,

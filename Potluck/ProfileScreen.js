@@ -30,7 +30,7 @@ export default function ProfileScreen({ navigation, route}) {
   };
 
   return (
-    <View>
+    <View style={styles.page}>
       <ScrollView style={styles.scrollContent}>
         <View style={styles.container}>
 
@@ -144,8 +144,11 @@ export default function ProfileScreen({ navigation, route}) {
 }
 
 const styles = StyleSheet.create({
+  page: {
+    backgroundColor: '#e0f0f0'
+  },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#e0f0f0',
     alignItems: 'center',
     padding: 20,
     justifyContent: 'flex-start',
